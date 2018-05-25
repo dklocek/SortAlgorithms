@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pl.dklocek.sorters.backend.BubbleSort;
+import pl.dklocek.sorters.backend.InsertionSort;
 import pl.dklocek.sorters.backend.SortMethod;
 import pl.dklocek.sorters.backend.StringToIntArray;
 
@@ -18,6 +19,15 @@ public class SortController {
 
         if(numbersString.length()==0)return new int[0];
         sortMethod = new BubbleSort();
+
+        return sortMethod.sort(StringToIntArray.StringToIntArray(numbersString));
+    }
+
+    @RequestMapping(value = "/insertion")
+    public int[] insertion(@RequestParam("table") String numbersString) {
+
+        if(numbersString.length()==0)return new int[0];
+        sortMethod = new InsertionSort();
 
         return sortMethod.sort(StringToIntArray.StringToIntArray(numbersString));
     }
