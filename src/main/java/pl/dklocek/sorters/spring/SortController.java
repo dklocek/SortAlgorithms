@@ -16,6 +16,7 @@ public class SortController {
     @RequestMapping(value = "/bubble")
     public int[] bubble(@RequestParam("table") String numbersString) {
 
+        if(numbersString.length()==0)return new int[0];
         sortMethod = new BubbleSort();
 
         return sortMethod.sort(StringToIntArray.StringToIntArray(numbersString));

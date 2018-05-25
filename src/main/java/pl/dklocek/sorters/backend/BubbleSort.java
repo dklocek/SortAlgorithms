@@ -7,6 +7,9 @@ public class BubbleSort implements SortMethod {
         int temp;
         boolean swapMade = false;
 
+        if(numbers.length==1)return numbers;
+
+
         do {
             swapMade=false;
 
