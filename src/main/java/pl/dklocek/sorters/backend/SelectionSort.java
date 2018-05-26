@@ -7,8 +7,7 @@ public class SelectionSort implements SortMethod{
 
         if(numbers.length<2)return numbers;
 
-          int min;
-          int temp;
+          int min, temp;
           int[] foundMinAndIndex;
           for(int i = 0 ; i<numbers.length; i++){
               foundMinAndIndex = findMin(numbers,i);
