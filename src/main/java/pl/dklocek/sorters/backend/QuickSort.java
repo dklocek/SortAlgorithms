@@ -21,7 +21,7 @@ public class QuickSort implements SortMethod {
 
         if (j < end) {
             //partycjonowanie
-            for (int i = 0; i < end; i++) {
+            for (int i = j; i < end; i++) {
 
                 if (numbers[i] <= pivot) {
                     temp = numbers[i];
@@ -36,7 +36,7 @@ public class QuickSort implements SortMethod {
             numbers[j] = pivot;
             numbers[end] = temp;
 
-
+            if(j>start)
             sorting(start, j - 1);
             sorting(j + 1, end);
 

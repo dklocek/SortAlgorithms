@@ -15,8 +15,8 @@ public class QuickSortTest {
     public void testSort() throws Exception {
 
         System.out.println("--------------------Quick Sort Test-----------------------------");
-        int[] shortTask = {1,200,3,100};
-        int[] result = {1,3,100,200};
+        int[] shortTask = {6,7,10,2};
+        int[] result = {2,6,7,10};
         assertArrayEquals(result,quickSort.sort(shortTask));
 
 
