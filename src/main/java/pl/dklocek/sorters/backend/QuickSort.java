@@ -2,33 +2,46 @@ package pl.dklocek.sorters.backend;
 
 
 public class QuickSort implements SortMethod {
+    int[] numbers;
 
     @Override
     public int[] sort(int[] numbers) {
 
         if (numbers.length < 2) return numbers;
 
-        int pivot = numbers[numbers.length - 1];
-        int i, j, temp;
-        i = 0;
-        j = 0;
+        this.numbers = numbers;
+        sorting(0, numbers.length - 1);
+        return numbers;
+    }
 
-        do {
+    public void sorting(int start, int end) {
+        int pivot = numbers[end];
+        int j = start;
+        int temp;
 
-            if (numbers[i] < pivot) {
-                temp = numbers[j];
-                numbers[j] = numbers[i];
-                numbers[i] = temp;
-                j++;
+        if (j < end) {
+            //partycjonowanie
+            for (int i = 0; i < end; i++) {
+
+                if (numbers[i] <= pivot) {
+                    temp = numbers[i];
+                    numbers[i] = numbers[j];
+                    numbers[j] = temp;
+                    j++;
+                }
+
             }
-            i++;
 
-        } while (i < numbers.length);
+            temp = numbers[j];
+            numbers[j] = pivot;
+            numbers[end] = temp;
 
-        if (j == numbers.length - 1) return numbers;
-        numbers[numbers.length - 1] = numbers[j];
-        numbers[j] = pivot;
 
-        return sort(numbers);
+            sorting(start, j - 1);
+            sorting(j + 1, end);
+
+        }
+
+
     }
 }

@@ -19,6 +19,8 @@ public class QuickSortTest {
         int[] result = {1,3,100,200};
         assertArrayEquals(result,quickSort.sort(shortTask));
 
+
+
         int[] none = {};
         result = new int[] {};
         assertArrayEquals(result,quickSort.sort(none));
