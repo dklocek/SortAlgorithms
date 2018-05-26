@@ -4,6 +4,8 @@ public class InsertionSort implements SortMethod{
     @Override
     public int[] sort(int[] numbers) {
 
+        if(numbers.length<2)return numbers;
+
         int sortedIndex, insertedVariable;
         for(int i =1 ; i<numbers.length ; i++){
 

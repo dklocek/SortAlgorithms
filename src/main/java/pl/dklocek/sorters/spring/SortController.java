@@ -32,5 +32,4 @@ public class SortController {
         return sortMethod.sort(StringToIntArray.StringToIntArray(numbersString));
     }
 
-
 }
