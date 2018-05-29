@@ -1,4 +1,4 @@
-package pl.dklocek.sorters.backend;
+package pl.dklocek.sorters.implementations;
 
 import org.junit.Test;
 
@@ -6,20 +6,20 @@ import java.util.Arrays;
 
 import static org.junit.Assert.assertArrayEquals;
 
-public class InsertionSortTest {
+public class BubbleSortTest {
 
     @Test
     public void testSort() throws Exception {
 
-        System.out.println("--------------------Insertion Sort Test--------------------------");
+        System.out.println("--------------------Bubble Sort Test--------------------------");
         int[] shortTask = {1, 200, 3, 100};
         int[] result = {1, 3, 100, 200};
-        assertArrayEquals(result, InsertionSort.sort(shortTask, false).get(0));
+        assertArrayEquals(result, BubbleSort.sort(shortTask, false).get(0));
         System.out.println("---Sample OK!---");
 
         int[] none = {};
         result = new int[]{};
-        assertArrayEquals(result, InsertionSort.sort(none, false).get(0));
+        assertArrayEquals(result, BubbleSort.sort(none, false).get(0));
         System.out.println("---Empty OK!---");
 
         for (int i = 0; i < 100; i++) {
@@ -27,7 +27,7 @@ public class InsertionSortTest {
                 int[] random = GenerateIntArray.generate(j);
                 result = random;
                 Arrays.sort(result);
-                assertArrayEquals(result, InsertionSort.sort(random, false).get(0));
+                assertArrayEquals(result, BubbleSort.sort(random, false).get(0));
             }
             System.out.println("---Random " + i + " *100 -> OK!---");
         }

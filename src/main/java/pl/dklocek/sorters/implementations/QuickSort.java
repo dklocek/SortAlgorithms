@@ -1,4 +1,4 @@
-package pl.dklocek.sorters.backend;
+package pl.dklocek.sorters.implementations;
 
 
 import java.util.ArrayList;

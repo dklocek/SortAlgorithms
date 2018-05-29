@@ -1,4 +1,4 @@
-package pl.dklocek.sorters.backend;
+package pl.dklocek.sorters.others;
 
 
 public class StringToIntArray {
