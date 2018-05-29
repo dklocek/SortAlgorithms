@@ -1,34 +1,41 @@
 package pl.dklocek.sorters.backend;
 
 
-public class QuickSort implements SortMethod {
-    int[] numbers;
+import java.util.ArrayList;
+import java.util.List;
 
-    @Override
-    public int[] sort(int[] numbers) {
+public class QuickSort{
 
-        if (numbers.length < 2) return numbers;
 
-        this.numbers = numbers;
-        sorting(0, numbers.length - 1);
-        return numbers;
+
+    public static List<int[]> sort(int[] numbers, boolean allSteps) {
+        List sorted = new ArrayList<>();
+
+        if (numbers.length < 2){
+               sorted.add(numbers);
+            return sorted;
+        };
+
+        sorted = sorting(sorted,allSteps,numbers,0, numbers.length - 1);
+        sorted.add(numbers.clone());
+        return sorted;
     }
 
-    public void sorting(int start, int end) {
+    public static List sorting(List sorted, boolean allSteps,int[] numbers, int start, int end) {
         int pivot = numbers[end];
         int j = start;
         int temp;
 
         if (j < end) {
-            //partycjonowanie
-            for (int i = j; i < end; i++) {
+           for (int i = j; i < end; i++) {
 
                 if (numbers[i] <= pivot) {
                     temp = numbers[i];
                     numbers[i] = numbers[j];
                     numbers[j] = temp;
                     j++;
-                }
+                    if(allSteps)sorted.add(numbers.clone());
+                 }
 
             }
 
@@ -37,10 +44,12 @@ public class QuickSort implements SortMethod {
             numbers[end] = temp;
 
             if(j>start)
-            sorting(start, j - 1);
-            sorting(j + 1, end);
+            sorting(sorted,allSteps,numbers,start, j - 1);
+            sorting(sorted,allSteps,numbers,j + 1, end);
 
         }
+
+     return sorted;
 
 
     }

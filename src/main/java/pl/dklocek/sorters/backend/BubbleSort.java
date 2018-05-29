@@ -1,13 +1,20 @@
 package pl.dklocek.sorters.backend;
 
-public class BubbleSort implements SortMethod {
+import java.util.ArrayList;
+import java.util.List;
 
-    @Override
-    public int[] sort(int[] numbers) {
+public class BubbleSort {
+
+
+    public static List<int[]> sort(int[] numbers, boolean allSteps) {
+        List sorted = new ArrayList<>();
         int temp;
         boolean swapMade = false;
 
-        if(numbers.length<2)return numbers;
+        if(numbers.length<2){
+               sorted.add(numbers);
+            return sorted;
+        };
 
 
         do {
@@ -19,11 +26,12 @@ public class BubbleSort implements SortMethod {
                     numbers[i+1]=numbers[i];
                     numbers[i]=temp;
                     swapMade=true;
+                    if(allSteps)sorted.add(numbers.clone());
                 }
             }
         } while (swapMade);
 
-
-        return numbers;
+        if(!allSteps)sorted.add(numbers);
+        return sorted;
     }
 }

@@ -1,11 +1,17 @@
 package pl.dklocek.sorters.backend;
 
-public class SelectionSort implements SortMethod{
+import java.util.ArrayList;
+import java.util.List;
 
-    @Override
-    public int[] sort(int[] numbers) {
+public class SelectionSort{
 
-        if(numbers.length<2)return numbers;
+
+    public static List<int[]> sort(int[] numbers, boolean allSteps) {
+        List sorted = new ArrayList<>();
+        if (numbers.length < 2){
+            sorted.add(numbers);
+            return sorted;
+        };
 
           int min, temp;
           int[] foundMinAndIndex;
@@ -16,11 +22,14 @@ public class SelectionSort implements SortMethod{
               numbers[i]=min;
               numbers[foundMinAndIndex[1]]=temp;
 
+              if(allSteps || i==numbers.length-1)
+              sorted.add(numbers.clone());
+
           }
-        return numbers;
+        return sorted;
     }
 
-    private int[] findMin(int[] array, int arrayIndex){
+    private static int[] findMin(int[] array, int arrayIndex){
         int min=array[arrayIndex];
         int index=arrayIndex;
         for(int i =arrayIndex+1; i<array.length;i++){

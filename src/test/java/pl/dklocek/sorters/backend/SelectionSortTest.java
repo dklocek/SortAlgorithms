@@ -7,25 +7,29 @@ import java.util.Arrays;
 import static org.junit.Assert.assertArrayEquals;
 
 public class SelectionSortTest {
-    SelectionSort selectionSort = new SelectionSort();
-    GenerateIntArray generator = new GenerateIntArray();
+
     @Test
     public void testSort() throws Exception {
 
-        System.out.println("--------------------Selection Sort Test-----------------------------");
-        int[] shortTask = {1,200,3,100};
-        int[] result = {1,3,100,200};
-        assertArrayEquals(result, selectionSort.sort(shortTask));
+        System.out.println("--------------------Selection  Sort Test--------------------------");
+        int[] shortTask = {1, 200, 3, 100};
+        int[] result = {1, 3, 100, 200};
+        assertArrayEquals(result, SelectionSort.sort(shortTask, false).get(0));
+        System.out.println("---Sample OK!---");
 
         int[] none = {};
-        result = new int[] {};
-        assertArrayEquals(result, selectionSort.sort(none));
+        result = new int[]{};
+        assertArrayEquals(result, SelectionSort.sort(none, false).get(0));
+        System.out.println("---Empty OK!---");
 
-        for(int x=0;x<100;x++) {
-            int[] random = generator.generateIntArray(200);
-            result = random;
-            Arrays.sort(result);
-            assertArrayEquals(result, selectionSort.sort(random));
+        for (int i = 0; i < 100; i++) {
+            for (int j = 0; j < 100; j++) {
+                int[] random = GenerateIntArray.generate(j);
+                result = random;
+                Arrays.sort(result);
+                assertArrayEquals(result, SelectionSort.sort(random, false).get(0));
+            }
+            System.out.println("---Random " + i + " *100 -> OK!---");
 
         }
     }

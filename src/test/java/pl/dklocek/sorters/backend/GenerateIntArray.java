@@ -5,13 +5,13 @@ import java.util.Random;
 
 public class GenerateIntArray {
 
-    public int[] generateIntArray(int numberOfElements){
+    public static int[] generate(int numberOfElements){
 
         int[] intArray = new int[numberOfElements];
-
+        Random random = new Random();
         for(int i=0; i<numberOfElements;i++){
-            Random random = new Random();
-            intArray[i]=random.nextInt();
+
+            intArray[i]=random.nextInt(1000 +1 +1000)-1000;
         }
 
         return intArray;

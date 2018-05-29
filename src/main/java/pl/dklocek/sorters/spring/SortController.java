@@ -6,28 +6,31 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pl.dklocek.sorters.backend.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 public class SortController {
 
-    SortMethod sortMethod;
-
     @RequestMapping(value = "/sort")
-    public int[] bubble(@RequestParam("table") String numbersString, @RequestParam("method") String method) {
+    public List sorted (@RequestParam(value = "table") String numbersString, @RequestParam("method") String method,
+                        @RequestParam(value = "allSteps", required = false) boolean steps) {
 
-        if(numbersString.length()==0)return new int[0];
+        if (numbersString.length() == 0) return null;
+        int[] numbersToSort = StringToIntArray.convert(numbersString);
 
-        switch (method){
-            case "bubble":  sortMethod = new BubbleSort();
-            case "insertion": sortMethod = new InsertionSort();
-            case "selection": sortMethod= new SelectionSort();
-            default: sortMethod = new QuickSort();
+        switch (method) {
+            case "bubble":
+                return BubbleSort.sort(numbersToSort,steps);
+            case "insertion":
+                return InsertionSort.sort(numbersToSort,steps);
+            case "selection":
+                return SelectionSort.sort(numbersToSort,steps);
+            default:
+                return QuickSort.sort(numbersToSort,steps);
         }
-        sortMethod = new BubbleSort();
 
-        return sortMethod.sort(StringToIntArray.StringToIntArray(numbersString));
+
+
     }
-
-
-
 }

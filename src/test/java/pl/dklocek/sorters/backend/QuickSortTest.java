@@ -6,33 +6,32 @@ import java.util.Arrays;
 
 import static org.junit.Assert.assertArrayEquals;
 
-
 public class QuickSortTest {
-    QuickSort quickSort = new QuickSort();
-    GenerateIntArray generator = new GenerateIntArray();
 
     @Test
     public void testSort() throws Exception {
 
-        System.out.println("--------------------Quick Sort Test-----------------------------");
-        int[] shortTask = {6,7,10,2};
-        int[] result = {2,6,7,10};
-        assertArrayEquals(result,quickSort.sort(shortTask));
-
-
+        System.out.println("--------------------Quick Sort Test--------------------------");
+        int[] shortTask = {1, 200, 3, 100};
+        int[] result = {1, 3, 100, 200};
+        assertArrayEquals(result, QuickSort.sort(shortTask, false).get(0));
+        System.out.println("---Sample OK!---");
 
         int[] none = {};
-        result = new int[] {};
-        assertArrayEquals(result,quickSort.sort(none));
+        result = new int[]{};
+        assertArrayEquals(result, QuickSort.sort(none, false).get(0));
+        System.out.println("---Empty OK!---");
 
-        for(int x=0;x<100;x++) {
-            int[] random = generator.generateIntArray(200);
-            result = random;
-            Arrays.sort(result);
-            assertArrayEquals(result, quickSort.sort(random));
-
+        for (int i = 0; i < 100; i++) {
+            for (int j = 0; j < 100; j++) {
+                int[] random = GenerateIntArray.generate(j);
+                result = random;
+                Arrays.sort(result);
+                assertArrayEquals(result, QuickSort.sort(random, false).get(0));
+            }
+            System.out.println("---Random " + i + " *100 -> OK!---");
         }
-    }
 
+    }
 
 }

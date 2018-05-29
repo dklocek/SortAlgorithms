@@ -1,11 +1,18 @@
 package pl.dklocek.sorters.backend;
 
-public class InsertionSort implements SortMethod{
-    @Override
-    public int[] sort(int[] numbers) {
+import java.util.ArrayList;
+import java.util.List;
 
-        if(numbers.length<2)return numbers;
+public class InsertionSort{
 
+
+    public static List<int[]> sort(int[] numbers, boolean allSteps) {
+        List sorted = new ArrayList<>();
+        if(numbers.length<2) {
+            sorted.add(numbers);
+            return sorted;
+
+        }
         int sortedIndex, insertedVariable;
         for(int i =1 ; i<numbers.length ; i++){
 
@@ -18,8 +25,10 @@ public class InsertionSort implements SortMethod{
             }
             numbers[sortedIndex]=insertedVariable;
 
-        }
+            if(allSteps)sorted.add(numbers.clone());
 
-        return numbers;
+        }
+        if(!allSteps)sorted.add(numbers);
+        return sorted;
     }
 }

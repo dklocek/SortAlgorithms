@@ -2,7 +2,7 @@ package pl.dklocek.sorters.backend;
 
 
 public class StringToIntArray {
-  public static int[] StringToIntArray(String numbersInString){
+  public static int[] convert(String numbersInString){
 
       if(numbersInString.length()==1){
           int[] number = new int[1];

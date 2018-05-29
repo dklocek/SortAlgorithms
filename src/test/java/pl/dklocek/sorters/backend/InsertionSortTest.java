@@ -4,28 +4,32 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
 
 public class InsertionSortTest {
-
-    InsertionSort insertionSort = new InsertionSort();
-    GenerateIntArray generator = new GenerateIntArray();
 
     @Test
     public void testSort() throws Exception {
 
         System.out.println("--------------------Insertion Sort Test--------------------------");
-        int[] shortTask = {1,200,3,100};
-        int[] result = {1,3,100,200};
-        assertArrayEquals(result,insertionSort.sort(shortTask));
+        int[] shortTask = {1, 200, 3, 100};
+        int[] result = {1, 3, 100, 200};
+        assertArrayEquals(result, InsertionSort.sort(shortTask, false).get(0));
+        System.out.println("---Sample OK!---");
 
         int[] none = {};
-        result = new int[] {};
-        assertArrayEquals(result,insertionSort.sort(none));
+        result = new int[]{};
+        assertArrayEquals(result, InsertionSort.sort(none, false).get(0));
+        System.out.println("---Empty OK!---");
 
-        int[] random = generator.generateIntArray(200);
-        result = random;
-        Arrays.sort(result);
-        assertArrayEquals(result,insertionSort.sort(random));
+        for (int i = 0; i < 100; i++) {
+            for (int j = 0; j < 100; j++) {
+                int[] random = GenerateIntArray.generate(j);
+                result = random;
+                Arrays.sort(result);
+                assertArrayEquals(result, InsertionSort.sort(random, false).get(0));
+            }
+            System.out.println("---Random " + i + " *100 -> OK!---");
+        }
     }
 }
