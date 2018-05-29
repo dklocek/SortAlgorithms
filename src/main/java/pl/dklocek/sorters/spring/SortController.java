@@ -12,38 +12,18 @@ public class SortController {
 
     SortMethod sortMethod;
 
-    @RequestMapping(value = "/bubble")
-    public int[] bubble(@RequestParam("table") String numbersString) {
+    @RequestMapping(value = "/sort")
+    public int[] bubble(@RequestParam("table") String numbersString, @RequestParam("method") String method) {
 
         if(numbersString.length()==0)return new int[0];
+
+        switch (method){
+            case "bubble":  sortMethod = new BubbleSort();
+            case "insertion": sortMethod = new InsertionSort();
+            case "selection": sortMethod= new SelectionSort();
+            default: sortMethod = new QuickSort();
+        }
         sortMethod = new BubbleSort();
-
-        return sortMethod.sort(StringToIntArray.StringToIntArray(numbersString));
-    }
-
-    @RequestMapping(value = "/insertion")
-    public int[] insertion(@RequestParam("table") String numbersString) {
-
-        if(numbersString.length()==0)return new int[0];
-        sortMethod = new InsertionSort();
-
-        return sortMethod.sort(StringToIntArray.StringToIntArray(numbersString));
-    }
-
-    @RequestMapping(value = "/quick")
-    public int[] quick(@RequestParam("table") String numbersString) {
-
-        if(numbersString.length()==0)return new int[0];
-        sortMethod = new QuickSort();
-
-        return sortMethod.sort(StringToIntArray.StringToIntArray(numbersString));
-    }
-
-    @RequestMapping(value = "/selection")
-    public int[] selection(@RequestParam("table") String numbersString) {
-
-        if(numbersString.length()==0)return new int[0];
-        sortMethod = new SelectionSort();
 
         return sortMethod.sort(StringToIntArray.StringToIntArray(numbersString));
     }

@@ -8,11 +8,9 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 public class SortersApplication extends SpringBootServletInitializer{
 
-
 	public static void main(String[] args) {
 		SpringApplication.run(SortersApplication.class, args);
 	}
-
 
 	/*
 	@Override
@@ -23,5 +21,5 @@ public class SortersApplication extends SpringBootServletInitializer{
 	public static void main(String[] args) throws Exception{
 		SpringApplication.run(SortersApplication.class,args);
 	}
-      */
+     */
 }
