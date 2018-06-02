@@ -11,8 +11,13 @@ public class MergeSort {
     private static boolean allSteps;
 
     public static List<int[]> sort(int[] numbers, boolean allSteps) {
-
         sorted = new ArrayList<>();
+
+        if (numbers.length < 2) {
+            sorted.add(numbers);
+            return sorted;
+        }
+
         temp = new int[numbers.length];
         MergeSort.numbers = numbers;
         MergeSort.allSteps = allSteps;
@@ -39,8 +44,7 @@ public class MergeSort {
 
     static void merge(int start, int middle, int end) {
 
-
-        for (int i = start; i <= end; i++) temp[i] = numbers[i];
+        temp = numbers.clone();
 
         int i = start;
         int j = middle + 1;
@@ -58,6 +62,5 @@ public class MergeSort {
 
         if (allSteps) sorted.add(numbers.clone());
     }
-
-
 }
+

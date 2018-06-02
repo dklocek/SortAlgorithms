@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SelectionSort {
-    private static List sorted;
 
     public static List<int[]> sort(int[] numbers, boolean allSteps) {
 
-        sorted = new ArrayList<>();
+        List<int[]> sorted = new ArrayList<>();
 
         if (numbers.length < 2) {
             sorted.add(numbers);

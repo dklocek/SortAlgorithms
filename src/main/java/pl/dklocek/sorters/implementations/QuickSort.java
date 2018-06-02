@@ -6,7 +6,7 @@ import java.util.List;
 
 public class QuickSort {
 
-    private static List sorted;
+    private static List<int[]> sorted;
 
     public static List<int[]> sort(int[] numbers, boolean allSteps) {
         QuickSort.sorted = new ArrayList<>();
@@ -14,14 +14,14 @@ public class QuickSort {
         if (numbers.length < 2){
                sorted.add(numbers);
             return sorted;
-        };
+        }
 
         sorted = sorting(allSteps,numbers,0, numbers.length - 1);
         sorted.add(numbers.clone());
         return sorted;
     }
 
-    public static List sorting(boolean allSteps,int[] numbers, int start, int end) {
+    public static List<int[]> sorting(boolean allSteps,int[] numbers, int start, int end) {
         int pivot = numbers[end];
         int j = start;
         int temp;
@@ -30,9 +30,7 @@ public class QuickSort {
            for (int i = j; i < end; i++) {
 
                 if (numbers[i] <= pivot) {
-                    temp = numbers[i];
-                    numbers[i] = numbers[j];
-                    numbers[j] = temp;
+                    Swap.swap(numbers,i,j);
                     j++;
                     if(allSteps)sorted.add(numbers.clone());
                  }
