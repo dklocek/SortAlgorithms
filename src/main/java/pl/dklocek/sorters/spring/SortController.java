@@ -31,6 +31,8 @@ public class SortController {
                 return SelectionSort.sort(numbersToSort, steps);
             case "merge":
                 return SelectionSort.sort(numbersToSort, steps);
+            case "heap":
+                return SelectionSort.sort(numbersToSort, steps);
             default:
                 return QuickSort.sort(numbersToSort, steps);
         }
