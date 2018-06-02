@@ -41,6 +41,11 @@ public class CompareSorters {
         elapsed = (System.nanoTime() - start) / 1000000.00;
         comparatorData.put("MergeSort", elapsed);
 
+        start = System.nanoTime();
+        HeapSort.sort(numbers, false).get(0);
+        elapsed = (System.nanoTime() - start) / 1000000.00;
+        comparatorData.put("HeapSort", elapsed);
+
         return comparatorData;
     }
 
