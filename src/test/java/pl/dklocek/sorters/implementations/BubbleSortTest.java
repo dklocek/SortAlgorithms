@@ -22,8 +22,8 @@ public class BubbleSortTest {
         assertArrayEquals(result, BubbleSort.sort(none, false).get(0));
         System.out.println("---Empty OK!---");
 
-        for (int i = 0; i < 100; i++) {
-            for (int j = 0; j < 100; j++) {
+        for (int i = 0; i < 1000; i++) {
+            for (int j = 0; j < 1000; j++) {
                 int[] random = GenerateIntArray.generate(j);
                 result = random;
                 Arrays.sort(result);

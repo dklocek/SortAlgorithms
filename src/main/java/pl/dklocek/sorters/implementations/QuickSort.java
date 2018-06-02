@@ -4,24 +4,24 @@ package pl.dklocek.sorters.implementations;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuickSort{
+public class QuickSort {
 
-
+    private static List sorted;
 
     public static List<int[]> sort(int[] numbers, boolean allSteps) {
-        List sorted = new ArrayList<>();
+        QuickSort.sorted = new ArrayList<>();
 
         if (numbers.length < 2){
                sorted.add(numbers);
             return sorted;
         };
 
-        sorted = sorting(sorted,allSteps,numbers,0, numbers.length - 1);
+        sorted = sorting(allSteps,numbers,0, numbers.length - 1);
         sorted.add(numbers.clone());
         return sorted;
     }
 
-    public static List sorting(List sorted, boolean allSteps,int[] numbers, int start, int end) {
+    public static List sorting(boolean allSteps,int[] numbers, int start, int end) {
         int pivot = numbers[end];
         int j = start;
         int temp;
@@ -43,9 +43,11 @@ public class QuickSort{
             numbers[j] = pivot;
             numbers[end] = temp;
 
+            if(((j-1)-start)<end-(j+1)){
             if(j>start)
-            sorting(sorted,allSteps,numbers,start, j - 1);
-            sorting(sorted,allSteps,numbers,j + 1, end);
+            sorting(allSteps,numbers,start, j - 1);}
+            else
+            sorting(allSteps,numbers,j + 1, end);
 
         }
 

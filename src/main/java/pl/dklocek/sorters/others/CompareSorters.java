@@ -1,46 +1,47 @@
 package pl.dklocek.sorters.others;
 
 
-import pl.dklocek.sorters.implementations.BubbleSort;
-import pl.dklocek.sorters.implementations.InsertionSort;
-import pl.dklocek.sorters.implementations.QuickSort;
-import pl.dklocek.sorters.implementations.SelectionSort;
+import pl.dklocek.sorters.implementations.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class CompareSorters {
-   private static Map<String,Double> comparationData = new HashMap<>();
-   private static Long start;
-   private static Double elapsed;
-   private static int[] result;
-    public static Map compare(int[] numbers){
+
+    private static Map<String, Double> comparatorData = new HashMap<>();
 
 
-        start = System.nanoTime();
-        result = BubbleSort.sort(numbers,false).get(0);
-        elapsed = (System.nanoTime()-start)/1000000.00;
-        comparationData.put("BubbleSort",elapsed);
+    public static Map compare(int[] numbers) {
+
+        Long start;
+        Double elapsed;
 
         start = System.nanoTime();
-        result = InsertionSort.sort(numbers,false).get(0);
-        elapsed = (System.nanoTime()-start)/1000000.00;
-        comparationData.put("InsertionSort",elapsed);
+        BubbleSort.sort(numbers, false).get(0);
+        elapsed = (System.nanoTime() - start) / 1000000.00;
+        comparatorData.put("BubbleSort", elapsed);
 
         start = System.nanoTime();
-        result = QuickSort.sort(numbers,false).get(0);
-        elapsed = (System.nanoTime()-start)/1000000.00;
-        comparationData.put("QuickSort",elapsed);
+        InsertionSort.sort(numbers, false).get(0);
+        elapsed = (System.nanoTime() - start) / 1000000.00;
+        comparatorData.put("InsertionSort", elapsed);
 
         start = System.nanoTime();
-        result = SelectionSort.sort(numbers,false).get(0);
-        elapsed = (System.nanoTime()-start)/1000000.00;
-        comparationData.put("SelectionSort",elapsed);
+        QuickSort.sort(numbers, false).get(0);
+        elapsed = (System.nanoTime() - start) / 1000000.00;
+        comparatorData.put("QuickSort", elapsed);
 
+        start = System.nanoTime();
+        SelectionSort.sort(numbers, false).get(0);
+        elapsed = (System.nanoTime() - start) / 1000000.00;
+        comparatorData.put("SelectionSort", elapsed);
 
+        start = System.nanoTime();
+        MergeSort.sort(numbers, false).get(0);
+        elapsed = (System.nanoTime() - start) / 1000000.00;
+        comparatorData.put("MergeSort", elapsed);
 
-
-        return comparationData;
+        return comparatorData;
     }
 
 }
