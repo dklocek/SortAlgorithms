@@ -22,15 +22,15 @@ public class QuickSortTest {
         assertArrayEquals(result, QuickSort.sort(none, false).get(0));
         System.out.println("---Empty OK!---");
 
-        for (int i = 0; i < 1000; i++) {
-            for (int j = 0; j < 1000; j++) {
-                int[] random = GenerateIntArray.generate(j);
+        for (int i = 0; i < 100; i++) {
+            for (int j = 0; j < 100; j++) {
+                int[] random = ArrayGenerator.generate(j);
                 result = random;
                 Arrays.sort(result);
                 assertArrayEquals(result, QuickSort.sort(random, false).get(0));
             }
-            System.out.println("---Random " + i + " *100 -> OK!---");
         }
+        System.out.println("---Random OK!---");
 
     }
 

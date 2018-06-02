@@ -9,7 +9,7 @@ public class HeapSort {
     private static boolean allSteps;
     private static int[] numbers;
 
-    public static List<int[]> sort(int[] numbers, boolean allSetps) {
+   public static List<int[]> sort(int[] numbers, boolean allSetps) {
         sorted = new ArrayList<>();
 
         if (numbers.length < 2) {
@@ -34,7 +34,7 @@ public class HeapSort {
 
         while (lastParent > -1) {
             leftChild = lastParent * 2 + 1;
-            if ((end - 1 % 2) == 0) {
+            if (leftChild+1<end) {
                 rightChild = lastParent * 2 + 2;
 
                 if (numbers[rightChild] > numbers[leftChild] && numbers[rightChild] > numbers[lastParent]) {
@@ -61,6 +61,66 @@ public class HeapSort {
         if (allSteps) sorted.add(numbers);
         if (end > 1)
             heapSort(end - 1);
+
+    }
+
+    private static List<String[]> sortedString;
+    private static String[] table;
+
+
+    public static List<String[]> sort(String[] table, boolean allSteps) {
+        sortedString = new ArrayList<>();
+
+        if (table.length < 2) {
+            sortedString.add(table);
+            return sortedString;
+        }
+
+        HeapSort.allSteps = allSteps;
+        HeapSort.table = table;
+        heapSortString(table.length);
+
+        if (!allSteps) sortedString.add(table);
+        return sortedString;
+    }
+
+    private static void heapSortString(int end) {
+
+        int lastParent = end / 2 - 1;
+        int leftChild;
+        int rightChild;
+        int parent = lastParent;
+
+
+        while (parent > -1) {
+            leftChild = parent * 2 + 1;
+            if (leftChild+1<end) {
+                rightChild = parent * 2 + 2;
+
+                if (table[rightChild].compareTo(table[leftChild]) > 0 && table[rightChild].compareTo(table[parent])>0) {
+                    Swap.swap(table, rightChild, parent);
+                    if (allSteps) sortedString.add(table);
+                }
+                if (table[leftChild].compareTo(table[rightChild]) > 0 && table[leftChild].compareTo(table[parent]) > 0) {
+                    Swap.swap(table, leftChild, parent);
+                    if (allSteps) sortedString.add(table);
+                }
+            } else {
+
+
+                if (table[leftChild].compareTo(table[parent]) > 0) {
+                    Swap.swap(table, leftChild, parent);
+                    if (allSteps) sortedString.add(table);
+                }
+            }
+
+            parent -= 1;
+        }
+
+        Swap.swap(table, 0, end - 1);
+        if (allSteps) sortedString.add(table);
+        if (end > 1)
+            heapSortString(end - 1);
 
     }
 

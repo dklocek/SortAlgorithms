@@ -3,8 +3,7 @@ package pl.dklocek.sorters.others;
 
 import pl.dklocek.sorters.implementations.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class CompareSorters {
 
@@ -15,6 +14,8 @@ public class CompareSorters {
 
         Long start;
         Double elapsed;
+
+        List<Objects> ol = new ArrayList<>();
 
         start = System.nanoTime();
         BubbleSort.sort(numbers, false).get(0);

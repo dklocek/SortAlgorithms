@@ -9,4 +9,11 @@ public class Swap {
         numbers[a] = numbers[b];
         numbers[b] = temp;
     }
+
+    public static void swap(String[] numbers, int a, int b) {
+        String temp;
+        temp = numbers[a];
+        numbers[a] = numbers[b];
+        numbers[b] = temp;
+    }
 }
