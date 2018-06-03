@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MergeSort {
-
+    /*---------- INT ---  INT ---- INT -----------*/
     private static List<int[]> sorted;
     private static int[] temp;
     private static int[] numbers;
@@ -62,5 +62,64 @@ public class MergeSort {
 
         if (allSteps) sorted.add(numbers.clone());
     }
+    /*---------STRING --------- STRING --------STRING---------*/
+    private static List<String[]> sortedString;
+    private static String[] tempString;
+    private static String[] table;
+
+    public static List<String[]> sort(String[] table, boolean allSteps) {
+        sortedString = new ArrayList<>();
+
+        if (table.length < 2) {
+            sortedString.add(table);
+            return sortedString;
+        }
+
+        tempString = new String[table.length];
+        MergeSort.table = table;
+        MergeSort.allSteps = allSteps;
+
+        mergeSortString(0, table.length - 1);
+
+        if (!allSteps) sortedString.add(table);
+
+        return sortedString;
+    }
+
+    static void mergeSortString(int start, int end) {
+
+        int middle;
+
+        if (start < end) {
+            middle = (end + start) / 2;
+            mergeSortString(start, middle);
+            mergeSortString(middle + 1, end);
+            mergeString(start, middle, end);
+
+        }
+    }
+
+    static void mergeString(int start, int middle, int end) {
+
+        tempString = table.clone();
+
+        int i = start;
+        int j = middle + 1;
+        int x = start;
+
+        while (i <= middle && j <= end) {
+            if (tempString[i].compareTo(tempString[j]) < 0)
+                table[x++] = tempString[i++];
+            else
+                table[x++] = tempString[j++];
+        }
+
+        while (i <= middle) table[x++] = tempString[i++];
+        while (j <= end) table[x++] = tempString[j++];
+
+        if (allSteps) sortedString.add(table.clone());
+    }
+
+
 }
 

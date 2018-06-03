@@ -35,4 +35,36 @@ public class InsertionSort {
 
         return sorted;
     }
+
+    public static List<String[]> sort(String[] table, boolean allSteps) {
+
+        List<String[]> sorted = new ArrayList<>();
+
+        if (table.length < 2) {
+            sorted.add(table);
+            return sorted;
+        }
+
+        int index;
+        String inserted;
+
+        for (int i = 1; i < table.length; i++) {
+
+            index = i;
+            inserted = table[i];
+
+            while (index > 0 && table[index - 1].compareTo(inserted) > 0) {
+                table[index] = table[index - 1];
+                index--;
+            }
+            table[index] = inserted;
+
+            if (allSteps) sorted.add(table.clone());
+
+        }
+
+        if (!allSteps) sorted.add(table);
+
+        return sorted;
+    }
 }

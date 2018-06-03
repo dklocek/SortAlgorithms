@@ -31,5 +31,38 @@ public class MergeSortTest {
             }
         }
         System.out.println("---Random OK!---");
+
+        System.out.println("-----------------------STRINGS--------------------------------");
+
+        String[] shortString = {"Dawid", "Jan", "Adam", "Aaa", "aaa", "Aaz", "aza"};
+        String[] resultString = shortString.clone(); Arrays.sort(resultString);
+        assertArrayEquals(resultString, MergeSort.sort(shortString,false).get(0));
+
+        String[] noneString = {};
+        resultString = new String[]{};
+        assertArrayEquals(resultString, MergeSort.sort(noneString, false).get(0));
+        System.out.println("---Empty OK!---");
+
+        for (int i = 0; i < 100; i++) {
+            for (int j = 0; j < 100; j++) {
+                String[] random = ArrayGenerator.generateString(j);
+                resultString = random;
+                Arrays.sort(resultString);
+                assertArrayEquals(resultString, MergeSort.sort(random, false).get(0));
+            }
+        }
+        System.out.println("---Random custom generator OK!----");
+
+        for (int i = 0; i < 100; i++) {
+            for (int j = 0; j < 100; j++) {
+                String[] random = ArrayGenerator.generateStringApache(j);
+                resultString = random;
+                Arrays.sort(resultString);
+                assertArrayEquals(resultString, MergeSort.sort(random, false).get(0));
+            }
+        }
+        System.out.println("---Random APACHE generator OK!----");
+        System.out.println("\n");
+
     }
 }
