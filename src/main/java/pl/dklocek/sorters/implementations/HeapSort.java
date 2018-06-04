@@ -3,13 +3,15 @@ package pl.dklocek.sorters.implementations;
 import java.util.ArrayList;
 import java.util.List;
 
+import static pl.dklocek.sorters.implementations.Swap.swap;
+
 public class HeapSort {
 
-    private static List<int[]> sorted;
     private static boolean allSteps;
+    private static List<int[]> sorted;
     private static int[] numbers;
 
-   public static List<int[]> sort(int[] numbers, boolean allSetps) {
+    public static List<int[]> sort(int[] numbers, boolean allSetps) {
         sorted = new ArrayList<>();
 
         if (numbers.length < 2) {
@@ -34,22 +36,22 @@ public class HeapSort {
 
         while (lastParent > -1) {
             leftChild = lastParent * 2 + 1;
-            if (leftChild+1<end) {
+            if (leftChild + 1 < end) {
                 rightChild = lastParent * 2 + 2;
 
                 if (numbers[rightChild] > numbers[leftChild] && numbers[rightChild] > numbers[lastParent]) {
-                    Swap.swap(numbers, rightChild, lastParent);
+                    swap(numbers, rightChild, lastParent);
                     if (allSteps) sorted.add(numbers);
                 }
                 if (numbers[leftChild] > numbers[rightChild] && numbers[leftChild] > numbers[lastParent]) {
-                    Swap.swap(numbers, leftChild, lastParent);
+                    swap(numbers, leftChild, lastParent);
                     if (allSteps) sorted.add(numbers);
                 }
             } else {
 
 
                 if (numbers[leftChild] > numbers[lastParent]) {
-                    Swap.swap(numbers, leftChild, lastParent);
+                    swap(numbers, leftChild, lastParent);
                     if (allSteps) sorted.add(numbers);
                 }
             }
@@ -57,7 +59,7 @@ public class HeapSort {
             lastParent -= 1;
         }
 
-        Swap.swap(numbers, 0, end - 1);
+        swap(numbers, 0, end - 1);
         if (allSteps) sorted.add(numbers);
         if (end > 1)
             heapSort(end - 1);
@@ -91,51 +93,40 @@ public class HeapSort {
         int rightChildIndex;
         int parentIndex = lastParent;
 
-        String rightChild ;
-        String leftChild ;
-        String parent ;
+        String rightChild;
+        String leftChild;
+        String parent;
 
         while (parentIndex > -1) {
             leftChildIndex = parentIndex * 2 + 1;
+            leftChild = table[leftChildIndex];
+            parent = table[parentIndex];
 
-            if (leftChildIndex+1<end) {
+            if (leftChildIndex + 1 < end) {
 
                 rightChildIndex = parentIndex * 2 + 2;
-
                 rightChild = table[rightChildIndex];
-                leftChild = table[leftChildIndex];
-                parent = table[parentIndex];
 
-                if (rightChild.compareToIgnoreCase(leftChild) > 0 && rightChild.compareToIgnoreCase(parent) > 0) {
-
-                    Swap.swap(table, rightChildIndex, parentIndex);
-                    if (allSteps) sortedString.add(table);
-                }
-                if (table[leftChildIndex].compareToIgnoreCase(table[rightChildIndex]) > 0 &&
-                        table[leftChildIndex].compareToIgnoreCase(table[parentIndex]) > 0) {
-
-                    Swap.swap(table, leftChildIndex, parentIndex);
-                    if (allSteps) sortedString.add(table);
-                }
-              //---------------------------------------------------------------------------------------------------//
-                if (rightChild.compareToIgnoreCase(leftChild) > 0 && rightChild.compareToIgnoreCase(parent) > 0) {
-
-                    Swap.swap(table, rightChildIndex, parentIndex);
-                    if (allSteps) sortedString.add(table);
-                }
-                if (table[leftChildIndex].compareToIgnoreCase(table[rightChildIndex]) > 0 &&
-                        table[leftChildIndex].compareToIgnoreCase(table[parentIndex]) > 0) {
-
-                    Swap.swap(table, leftChildIndex, parentIndex);
-                    if (allSteps) sortedString.add(table);
+                if (leftChild.compareToIgnoreCase(rightChild) > 0 || leftChild.compareToIgnoreCase(rightChild) == 0 && leftChild.compareTo(rightChild) > 0) {
+                    if (leftChild.compareToIgnoreCase(parent) > 0 || leftChild.compareToIgnoreCase(parent) == 0 && leftChild.compareTo(parent) > 0) {
+                        swap(table, leftChildIndex, parentIndex);
+                        if (allSteps) sortedString.add(table);
+                    }
+                } else {
+                    if (rightChild.compareToIgnoreCase(parent) > 0 || rightChild.compareToIgnoreCase(parent) == 0 && rightChild.compareTo(parent) > 0) {
+                        swap(table, rightChildIndex, parentIndex);
+                        if (allSteps) sortedString.add(table);
+                    }
                 }
 
 
             } else {
 
+                leftChild = table[leftChildIndex];
+                parent = table[parentIndex];
 
-                if (table[leftChildIndex].compareToIgnoreCase(table[parentIndex]) > 0) {
-                    Swap.swap(table, leftChildIndex, parentIndex);
+                if (leftChild.compareToIgnoreCase(parent) > 0 || leftChild.compareToIgnoreCase(parent) == 0 && leftChild.compareTo(parent) > 0) {
+                    swap(table, leftChildIndex, parentIndex);
                     if (allSteps) sortedString.add(table);
                 }
             }
@@ -143,7 +134,7 @@ public class HeapSort {
             parentIndex -= 1;
         }
 
-        Swap.swap(table, 0, end - 1);
+        swap(table, 0, end - 1);
         if (allSteps) sortedString.add(table);
         if (end > 1)
             heapSortString(end - 1);

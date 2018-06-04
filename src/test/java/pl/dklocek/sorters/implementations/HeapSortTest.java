@@ -45,10 +45,7 @@ public class HeapSortTest {
 
         String[] shortString = {"Dawid", "Jan", "Adam", "Aaa", "aaa", "Aaz", "aza"};
         String[] resultString = shortString.clone(); Arrays.sort(resultString, String.CASE_INSENSITIVE_ORDER);
-        //assertArrayEquals(resultString, HeapSort.sort(shortString,false).get(0));
-        String[] one ={"Aaa","aaa"};
-        String[] two ={"aaa","Aaa"};
-        assertArrayEquals(one,two);
+        assertArrayEquals(resultString, HeapSort.sort(shortString,false).get(0));
         System.out.println("---Sample OK!---");
 
         String[] noneString = {};

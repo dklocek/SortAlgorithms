@@ -41,7 +41,7 @@ public class BubbleSortTest {
 
         System.out.println("-----------------------STRINGS--------------------------------");
 
-        String[] shortString = {"Dawid", "Jan", "Adam", "Aaa", "aaa", "Aaz", "aza"};
+        String[] shortString = {"Dawid", "Jan", "Adam", "aaa", "Aaa", "Aaz", "aza"};
         String[] resultString = shortString.clone(); Arrays.sort(resultString, String.CASE_INSENSITIVE_ORDER);
         assertArrayEquals(resultString, BubbleSort.sort(shortString,false).get(0));
 

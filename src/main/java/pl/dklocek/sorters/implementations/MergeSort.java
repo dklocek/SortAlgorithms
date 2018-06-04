@@ -108,7 +108,7 @@ public class MergeSort {
         int x = start;
 
         while (i <= middle && j <= end) {
-            if (tempString[i].compareTo(tempString[j]) < 0)
+            if (tempString[i].compareToIgnoreCase(tempString[j]) < 0 || tempString[i].compareToIgnoreCase(tempString[j]) ==0 && tempString[i].compareTo(tempString[j])<0)
                 table[x++] = tempString[i++];
             else
                 table[x++] = tempString[j++];

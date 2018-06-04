@@ -31,11 +31,14 @@ public class InsertionSortTest {
             }
         }
         System.out.println("---Random OK!---");
+    }
 
+    @Test
+    public void testSortString() throws Exception{
         System.out.println("-----------------------STRINGS--------------------------------");
 
         String[] shortString = {"Dawid", "Jan", "Adam", "Aaa", "aaa", "Aaz", "aza"};
-        String[] resultString = shortString.clone(); Arrays.sort(resultString);
+        String[] resultString = shortString.clone(); Arrays.sort(resultString, String.CASE_INSENSITIVE_ORDER);
         assertArrayEquals(resultString, InsertionSort.sort(shortString,false).get(0));
 
         String[] noneString = {};
@@ -47,7 +50,7 @@ public class InsertionSortTest {
             for (int j = 0; j < 100; j++) {
                 String[] random = ArrayGenerator.generateString(j);
                 resultString = random;
-                Arrays.sort(resultString);
+                Arrays.sort(resultString, String.CASE_INSENSITIVE_ORDER);
                 assertArrayEquals(resultString, InsertionSort.sort(random, false).get(0));
             }
         }
@@ -57,7 +60,7 @@ public class InsertionSortTest {
             for (int j = 0; j < 100; j++) {
                 String[] random = ArrayGenerator.generateStringApache(j);
                 resultString = random;
-                Arrays.sort(resultString);
+                Arrays.sort(resultString, String.CASE_INSENSITIVE_ORDER);
                 assertArrayEquals(resultString, InsertionSort.sort(random, false).get(0));
             }
         }

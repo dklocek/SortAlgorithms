@@ -53,7 +53,8 @@ public class InsertionSort {
             index = i;
             inserted = table[i];
 
-            while (index > 0 && table[index - 1].compareTo(inserted) > 0) {
+            while (index > 0 && ((table[index - 1].compareToIgnoreCase(inserted) > 0) ||
+                                (table[index - 1].compareToIgnoreCase(inserted)==0 && table[index-1].compareTo(inserted)>0))) {
                 table[index] = table[index - 1];
                 index--;
             }
