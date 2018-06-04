@@ -44,7 +44,7 @@ public class BubbleSort {
            swapMade=false;
 
             for(int i = 0 ; i< table.length -1; i++){
-                if(table[i].compareTo(table[i+1]) > 0) {
+                if(table[i].compareToIgnoreCase(table[i+1]) > 0) {
                    Swap.swap(table,i,i+1);
                    swapMade = true;
                     if(allSteps)sorted.add(table);

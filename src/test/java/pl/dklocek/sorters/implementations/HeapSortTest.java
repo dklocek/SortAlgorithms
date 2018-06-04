@@ -5,11 +5,13 @@ import org.junit.Test;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class HeapSortTest {
 
     @Test
-    public void testSort() throws Exception {
+    public void testSortInt() throws Exception {
 
         System.out.println("--------------------Heap Sort Test--------------------------");
         System.out.println("-----------------------NUMBERS--------------------------------");
@@ -33,12 +35,21 @@ public class HeapSortTest {
             }
         }
         System.out.println("---Random OK!---");
+        System.out.println("\n");
+    }
+
+    @Test
+    public void testSortString() throws Exception{
 
         System.out.println("-----------------------STRINGS--------------------------------");
 
         String[] shortString = {"Dawid", "Jan", "Adam", "Aaa", "aaa", "Aaz", "aza"};
-        String[] resultString = shortString.clone(); Arrays.sort(resultString);
-        assertArrayEquals(resultString, HeapSort.sort(shortString,false).get(0));
+        String[] resultString = shortString.clone(); Arrays.sort(resultString, String.CASE_INSENSITIVE_ORDER);
+        //assertArrayEquals(resultString, HeapSort.sort(shortString,false).get(0));
+        String[] one ={"Aaa","aaa"};
+        String[] two ={"aaa","Aaa"};
+        assertArrayEquals(one,two);
+        System.out.println("---Sample OK!---");
 
         String[] noneString = {};
         resultString = new String[]{};
@@ -49,7 +60,7 @@ public class HeapSortTest {
             for (int j = 0; j < 100; j++) {
                 String[] random = ArrayGenerator.generateString(j);
                 resultString = random;
-                Arrays.sort(resultString);
+                Arrays.sort(resultString, String.CASE_INSENSITIVE_ORDER);
                 assertArrayEquals(resultString, HeapSort.sort(random, false).get(0));
             }
         }
@@ -59,7 +70,7 @@ public class HeapSortTest {
             for (int j = 0; j < 100; j++) {
                 String[] random = ArrayGenerator.generateStringApache(j);
                 resultString = random;
-                Arrays.sort(resultString);
+                Arrays.sort(resultString, String.CASE_INSENSITIVE_ORDER);
                 assertArrayEquals(resultString, HeapSort.sort(random, false).get(0));
             }
         }

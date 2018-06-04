@@ -9,7 +9,7 @@ import static org.junit.Assert.assertArrayEquals;
 public class BubbleSortTest {
 
     @Test
-    public void testSort() throws Exception {
+    public void testSortInt() throws Exception {
 
         System.out.println("--------------------Bubble Sort Test--------------------------");
         System.out.println("-----------------------NUMBERS--------------------------------");
@@ -33,11 +33,16 @@ public class BubbleSortTest {
             }
         }
         System.out.println("---Random OK!---");
+        System.out.println("\n");
+    }
+
+    @Test
+    public void testSortString() throws Exception {
 
         System.out.println("-----------------------STRINGS--------------------------------");
 
         String[] shortString = {"Dawid", "Jan", "Adam", "Aaa", "aaa", "Aaz", "aza"};
-        String[] resultString = shortString.clone(); Arrays.sort(resultString);
+        String[] resultString = shortString.clone(); Arrays.sort(resultString, String.CASE_INSENSITIVE_ORDER);
         assertArrayEquals(resultString, BubbleSort.sort(shortString,false).get(0));
 
         String[] noneString = {};
@@ -49,7 +54,7 @@ public class BubbleSortTest {
             for (int j = 0; j < 100; j++) {
                 String[] random = ArrayGenerator.generateString(j);
                 resultString = random;
-                Arrays.sort(resultString);
+                Arrays.sort(resultString, String.CASE_INSENSITIVE_ORDER);
                 assertArrayEquals(resultString, BubbleSort.sort(random, false).get(0));
             }
         }
@@ -59,11 +64,12 @@ public class BubbleSortTest {
             for (int j = 0; j < 100; j++) {
                 String[] random = ArrayGenerator.generateStringApache(j);
                 resultString = random;
-                Arrays.sort(resultString);
+                Arrays.sort(resultString, String.CASE_INSENSITIVE_ORDER);
                 assertArrayEquals(resultString, BubbleSort.sort(random, false).get(0));
             }
         }
         System.out.println("---Random APACHE generator OK!---");
         System.out.println("\n");
+
     }
 }

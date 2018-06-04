@@ -87,34 +87,60 @@ public class HeapSort {
     private static void heapSortString(int end) {
 
         int lastParent = end / 2 - 1;
-        int leftChild;
-        int rightChild;
-        int parent = lastParent;
+        int leftChildIndex;
+        int rightChildIndex;
+        int parentIndex = lastParent;
 
+        String rightChild ;
+        String leftChild ;
+        String parent ;
 
-        while (parent > -1) {
-            leftChild = parent * 2 + 1;
-            if (leftChild+1<end) {
-                rightChild = parent * 2 + 2;
+        while (parentIndex > -1) {
+            leftChildIndex = parentIndex * 2 + 1;
 
-                if (table[rightChild].compareTo(table[leftChild]) > 0 && table[rightChild].compareTo(table[parent])>0) {
-                    Swap.swap(table, rightChild, parent);
+            if (leftChildIndex+1<end) {
+
+                rightChildIndex = parentIndex * 2 + 2;
+
+                rightChild = table[rightChildIndex];
+                leftChild = table[leftChildIndex];
+                parent = table[parentIndex];
+
+                if (rightChild.compareToIgnoreCase(leftChild) > 0 && rightChild.compareToIgnoreCase(parent) > 0) {
+
+                    Swap.swap(table, rightChildIndex, parentIndex);
                     if (allSteps) sortedString.add(table);
                 }
-                if (table[leftChild].compareTo(table[rightChild]) > 0 && table[leftChild].compareTo(table[parent]) > 0) {
-                    Swap.swap(table, leftChild, parent);
+                if (table[leftChildIndex].compareToIgnoreCase(table[rightChildIndex]) > 0 &&
+                        table[leftChildIndex].compareToIgnoreCase(table[parentIndex]) > 0) {
+
+                    Swap.swap(table, leftChildIndex, parentIndex);
                     if (allSteps) sortedString.add(table);
                 }
+              //---------------------------------------------------------------------------------------------------//
+                if (rightChild.compareToIgnoreCase(leftChild) > 0 && rightChild.compareToIgnoreCase(parent) > 0) {
+
+                    Swap.swap(table, rightChildIndex, parentIndex);
+                    if (allSteps) sortedString.add(table);
+                }
+                if (table[leftChildIndex].compareToIgnoreCase(table[rightChildIndex]) > 0 &&
+                        table[leftChildIndex].compareToIgnoreCase(table[parentIndex]) > 0) {
+
+                    Swap.swap(table, leftChildIndex, parentIndex);
+                    if (allSteps) sortedString.add(table);
+                }
+
+
             } else {
 
 
-                if (table[leftChild].compareTo(table[parent]) > 0) {
-                    Swap.swap(table, leftChild, parent);
+                if (table[leftChildIndex].compareToIgnoreCase(table[parentIndex]) > 0) {
+                    Swap.swap(table, leftChildIndex, parentIndex);
                     if (allSteps) sortedString.add(table);
                 }
             }
 
-            parent -= 1;
+            parentIndex -= 1;
         }
 
         Swap.swap(table, 0, end - 1);
