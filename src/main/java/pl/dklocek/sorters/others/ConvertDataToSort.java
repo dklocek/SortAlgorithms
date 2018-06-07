@@ -1,8 +1,8 @@
 package pl.dklocek.sorters.others;
 
 
-public class StringToIntArray {
-  public static int[] convert(String numbersInString){
+public class ConvertDataToSort {
+  public static int[] convertToInt(String numbersInString){
 
       if(numbersInString.length()==1){
           int[] number = new int[1];
@@ -17,6 +17,13 @@ public class StringToIntArray {
           numbers[i] = Integer.parseInt(numbersInStringArray[i]);
       }
       return numbers;
+  }
+
+  public static String[] convertToString(String dataToSort){
+
+      dataToSort.trim();
+
+      return dataToSort.split(",");
   }
 
 }

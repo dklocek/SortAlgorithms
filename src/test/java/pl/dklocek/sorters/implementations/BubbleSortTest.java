@@ -1,6 +1,8 @@
 package pl.dklocek.sorters.implementations;
 
+import org.junit.Assert;
 import org.junit.Test;
+import pl.dklocek.sorters.others.Student;
 
 import java.util.Arrays;
 
@@ -70,6 +72,36 @@ public class BubbleSortTest {
         }
         System.out.println("---Random APACHE generator OK!---");
         System.out.println("\n");
+
+    }
+
+    @Test
+    public void testSortStudent() throws Exception{
+        Student[] testArray = {new Student("Dawid","Klocek",1,33), new Student("Adam","Wiśniewski",3,22),
+        new Student("Dawid","Wójcik",2,32)};
+        Student[] sorted;
+
+        sorted = testArray.clone();
+        Arrays.sort(sorted, Student::compareNameIgnore);
+        Assert.assertArrayEquals(sorted,BubbleSort.sortByName(testArray,false).get(0));
+
+        sorted = testArray.clone();
+        Arrays.sort(sorted, Student::compareSurnameIgnore);
+        Assert.assertArrayEquals(sorted,BubbleSort.sortBySurnameame(testArray,false).get(0));
+
+        sorted = testArray.clone();
+        Arrays.sort(sorted, Student::compareNameAndSurname);
+        Assert.assertArrayEquals(sorted,BubbleSort.sortByNameAndSurname(testArray,false).get(0));
+
+        sorted = testArray.clone();
+        Arrays.sort(sorted, Student::compareAge);
+        Assert.assertArrayEquals(sorted,BubbleSort.sortByAge(testArray,false).get(0));
+
+        sorted = testArray.clone();
+        Arrays.sort(sorted, Student::compareId);
+        Assert.assertArrayEquals(sorted,BubbleSort.sortById(testArray,false).get(0));
+
+
 
     }
 }
