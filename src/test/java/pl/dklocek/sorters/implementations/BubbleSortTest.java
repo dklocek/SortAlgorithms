@@ -82,23 +82,19 @@ public class BubbleSortTest {
         Student[] sorted;
 
         sorted = testArray.clone();
-        Arrays.sort(sorted, Student::compareNameIgnore);
+        Arrays.sort(sorted, Student::compareByName);
         Assert.assertArrayEquals(sorted,BubbleSort.sortByName(testArray,false).get(0));
 
         sorted = testArray.clone();
-        Arrays.sort(sorted, Student::compareSurnameIgnore);
-        Assert.assertArrayEquals(sorted,BubbleSort.sortBySurnameame(testArray,false).get(0));
+        Arrays.sort(sorted, Student::compareBySurname);
+        Assert.assertArrayEquals(sorted,BubbleSort.sortBySurname(testArray,false).get(0));
 
         sorted = testArray.clone();
-        Arrays.sort(sorted, Student::compareNameAndSurname);
-        Assert.assertArrayEquals(sorted,BubbleSort.sortByNameAndSurname(testArray,false).get(0));
-
-        sorted = testArray.clone();
-        Arrays.sort(sorted, Student::compareAge);
+        Arrays.sort(sorted, Student::compareByAge);
         Assert.assertArrayEquals(sorted,BubbleSort.sortByAge(testArray,false).get(0));
 
         sorted = testArray.clone();
-        Arrays.sort(sorted, Student::compareId);
+        Arrays.sort(sorted, Student::compareById);
         Assert.assertArrayEquals(sorted,BubbleSort.sortById(testArray,false).get(0));
 
 

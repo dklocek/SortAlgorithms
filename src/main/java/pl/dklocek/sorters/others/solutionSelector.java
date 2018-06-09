@@ -36,8 +36,8 @@ public class SolutionSelector {
                 if (sortingDriver == 0) return MergeSort.sort(numbersToSort, steps);
                 else return MergeSort.sort(stringsToSort, steps);
             case "heap":
-                if (sortingDriver == 0) return HeapSort.sort(numbersToSort, steps);
-                else return HeapSort.sort(stringsToSort, steps);
+                if (sortingDriver == 0) return HeapSort.sort(numbersToSort, steps, numbersToSort.length);
+                else return HeapSort.sort(stringsToSort, steps, stringsToSort.length);
             default:
                 if (sortingDriver == 0) return QuickSort.sort(numbersToSort, steps);
                 else return QuickSort.sort(stringsToSort, steps);

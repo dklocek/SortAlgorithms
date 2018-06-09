@@ -1,6 +1,8 @@
 package pl.dklocek.sorters.implementations;
 
+import org.junit.Assert;
 import org.junit.Test;
+import pl.dklocek.sorters.others.Student;
 
 import java.util.Arrays;
 
@@ -66,6 +68,17 @@ public class QuickSortTest {
         }
         System.out.println("---Random APACHE generator OK!----");
         System.out.println("\n");
+    }
+
+    @Test
+    public void testSortStudent() throws Exception {
+        Student[] testArray = {new Student("Dawid", "Klocek", 1, 33), new Student("Adam", "Wiśniewski", 3, 22),
+                new Student("Dawid", "Wójcik", 2, 32)};
+        Student[] sorted;
+
+        sorted = testArray.clone();
+        Arrays.sort(sorted, Student::compareByName);
+        Assert.assertArrayEquals(sorted, QuickSort.sortByName(testArray, false).get(0));
     }
 
 }

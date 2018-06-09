@@ -30,15 +30,7 @@ public class Student implements Comparable<Student>{
         return age;
     }
 
-    public int compareNameIgnore(Student student){
-        return this.name.compareToIgnoreCase(student.getName());
-    }
-
-    public int compareSurnameIgnore(Student student){
-        return this.surname.compareToIgnoreCase(student.getSurname());
-    }
-
-    public int compareNameAndSurname(Student student){
+    public int compareByName(Student student){
         if(this.name.compareToIgnoreCase(student.getName())>0)return 1;
         else if(this.name.compareToIgnoreCase(student.getName())<0)return -1;
         else if(this.name.compareToIgnoreCase(student.getName())==0 && this.name.compareTo(student.getName())>0)return 1;
@@ -52,14 +44,28 @@ public class Student implements Comparable<Student>{
         }
     }
 
-    public int compareId(Student student){
+    public int compareBySurname(Student student){
+        if(this.surname.compareToIgnoreCase(student.getSurname())>0)return 1;
+        else if(this.surname.compareToIgnoreCase(student.getSurname())<0)return -1;
+        else if(this.surname.compareToIgnoreCase(student.getSurname())==0 && this.surname.compareTo(student.getSurname())>0)return 1;
+        else if(this.surname.compareToIgnoreCase(student.getSurname())==0 && this.surname.compareTo(student.getSurname())<0)return -1;
+        else {
+            if(this.name.compareToIgnoreCase(student.getName())>0)return 1;
+            else if(this.name.compareToIgnoreCase(student.getName())<0)return -1;
+            else if(this.name.compareToIgnoreCase(student.getName())==0 && this.name.compareTo(student.getName())>0)return 1;
+            else if(this.name.compareToIgnoreCase(student.getName())==0 && this.name.compareTo(student.getName())<0)return -1;
+            else return 0;
+        }
+    }
+
+    public int compareById(Student student){
 
          if(this.id>student.getId())return 1;
          else if(this.id==student.getId())return 0;
          else return -1;
     }
 
-    public int compareAge(Student student){
+    public int compareByAge(Student student){
 
         if(this.age>student.getAge())return 1;
         else if(this.age==student.getAge())return 0;

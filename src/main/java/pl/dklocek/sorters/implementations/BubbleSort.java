@@ -72,7 +72,7 @@ public class BubbleSort {
           swapMade=false;
 
             for(int i=0; i<students.length -1; i++ ){
-                if(students[i].compareNameIgnore(students[i+1])>0){
+                if(students[i].compareByName(students[i+1])>0){
                     Swap.swap(students,i,i+1);
                     swapMade=true;
                     if(allSteps)sorted.add(students);
@@ -83,7 +83,7 @@ public class BubbleSort {
         return sorted;
     }
 
-    public static List<Student[]> sortBySurnameame(Student[] students, boolean allSteps){
+    public static List<Student[]> sortBySurname(Student[] students, boolean allSteps){
         List<Student[]> sorted = new ArrayList<>();
         boolean swapMade;
 
@@ -95,7 +95,7 @@ public class BubbleSort {
             swapMade=false;
 
             for(int i=0; i<students.length -1; i++ ){
-                if(students[i].compareSurnameIgnore(students[i+1])>0){
+                if(students[i].compareBySurname(students[i+1])>0){
                     Swap.swap(students,i,i+1);
                     swapMade=true;
                     if(allSteps)sorted.add(students);
@@ -120,7 +120,7 @@ public class BubbleSort {
             swapMade = false;
 
             for (int i = 0; i < students.length - 1; i++) {
-                if (students[i].compareId(students[i+1])>0) {
+                if (students[i].compareById(students[i+1])>0) {
                     Swap.swap(students, i, i + 1);
                     swapMade = true;
                     if (allSteps) sorted.add(students.clone());
@@ -146,7 +146,7 @@ public class BubbleSort {
             swapMade = false;
 
             for (int i = 0; i < students.length - 1; i++) {
-                if (students[i].compareAge(students[i+1]) > 0) {
+                if (students[i].compareByAge(students[i+1]) > 0) {
                     Swap.swap(students, i, i + 1);
                     swapMade = true;
                     if (allSteps) sorted.add(students.clone());
@@ -155,29 +155,6 @@ public class BubbleSort {
         } while (swapMade);
 
         if (!allSteps) sorted.add(students);
-        return sorted;
-    }
-
-    public static List<Student[]> sortByNameAndSurname(Student[] students, boolean allSteps){
-        List<Student[]> sorted = new ArrayList<>();
-        boolean swapMade;
-
-        if(students.length<2){
-            sorted.add(students);
-            return sorted;
-        }
-        do{
-            swapMade=false;
-
-            for(int i=0; i<students.length -1; i++ ){
-                if(students[i].compareNameAndSurname(students[i+1])>0){
-                    Swap.swap(students,i,i+1);
-                    swapMade=true;
-                    if(allSteps)sorted.add(students);
-                }
-            }
-        }while (swapMade);
-        if(!allSteps)sorted.add(students);
         return sorted;
     }
 

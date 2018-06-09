@@ -15,8 +15,6 @@ public class CompareSorters {
         Long start;
         Double elapsed;
 
-        List<Objects> ol = new ArrayList<>();
-
         start = System.nanoTime();
         BubbleSort.sort(numbers, false).get(0);
         elapsed = (System.nanoTime() - start) / 1000000.00;
@@ -43,7 +41,7 @@ public class CompareSorters {
         comparatorData.put("MergeSort", elapsed);
 
         start = System.nanoTime();
-        HeapSort.sort(numbers, false).get(0);
+        HeapSort.sort(numbers, false, numbers.length).get(0);
         elapsed = (System.nanoTime() - start) / 1000000.00;
         comparatorData.put("HeapSort", elapsed);
 
