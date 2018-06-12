@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import pl.dklocek.sorters.implementations.BubbleSort;
 import pl.dklocek.sorters.others.CompareSorters;
 import pl.dklocek.sorters.others.ConvertDataToSort;
 import pl.dklocek.sorters.others.SolutionSelector;
@@ -23,29 +22,28 @@ public class SortController {
     public List sorted1(@RequestParam(value = "table") String dataToSort, @RequestParam("method") String method,
                        @RequestParam(value = "allSteps", required = false) boolean steps) {
 
-        return SolutionSelector.SolutionSelector(dataToSort,steps,method);
+        return SolutionSelector.select(dataToSort,steps,method);
     }
 
     @RequestMapping(value = "/sortStudent")
-    public List sorted(@RequestParam(value = "table") String dataToSort) {
+    public List sorted(@RequestParam(value = "table") String dataToSort, @RequestParam(value = "sortBy") String sortBy,
+                       @RequestParam(value = "allSteps", required = false) boolean steps,
+                       @RequestParam("method") String method) {
 
-        String testowy = ("["+dataToSort.substring(1, dataToSort.length())+"]").replaceAll(";",",");
-        System.out.println(testowy.substring(1));
-        Student[] students1=null;
+        String inputData = ("["+dataToSort.substring(1, dataToSort.length())+"]").replaceAll(";",",");
+        Student[] students1={};
         ObjectMapper mapper = new ObjectMapper();
 
         try {
-            Student[] students12 = mapper.readValue(testowy, Student[].class);
-            students1=students12;
+            students1 = mapper.readValue(inputData, Student[].class);
+
         } catch (IOException e) {
             e.printStackTrace();
+            students1[0]= new Student("-1","-1",-1,-1);
+
         }
 
-     /*   List<Student> students = Arrays.asList(students1);
-        students.add(new Student("Dawid", "klocek", 1, 32));
-        students.add(new Student("Dawid", "klocek", 1, 33));
-        students.add(new Student("Dawid", "klocek", 1, 34));*/
-        return BubbleSort.sortByName(students1,false);
+        return SolutionSelector.selectStudent(students1,steps,method, sortBy);
     }
 
     @RequestMapping(value = "/compare")

@@ -64,6 +64,7 @@ public class MergeSort {
 
         if (allSteps) sorted.add(numbers.clone());
     }
+
     /*---------STRING --------- STRING --------STRING---------*/
     private static List<String[]> sortedString;
     private static String[] tempString;
@@ -87,6 +88,7 @@ public class MergeSort {
 
         return sortedString;
     }
+
     static void mergeSortString(int start, int end) {
 
         int middle;
@@ -99,6 +101,7 @@ public class MergeSort {
 
         }
     }
+
     static void mergeString(int start, int middle, int end) {
 
         tempString = table.clone();
@@ -108,7 +111,7 @@ public class MergeSort {
         int x = start;
 
         while (i <= middle && j <= end) {
-            if (tempString[i].compareToIgnoreCase(tempString[j]) < 0 || tempString[i].compareToIgnoreCase(tempString[j]) ==0 && tempString[i].compareTo(tempString[j])<0)
+            if (tempString[i].compareToIgnoreCase(tempString[j]) < 0 || tempString[i].compareToIgnoreCase(tempString[j]) == 0 && tempString[i].compareTo(tempString[j]) < 0)
                 table[x++] = tempString[i++];
             else
                 table[x++] = tempString[j++];
@@ -123,10 +126,11 @@ public class MergeSort {
     private static List<Student[]> sortedStudents;
     private static Student[] tempStudents;
     private static Student[] students;
+    private static String compareBy;
 
-    public static List<Student[]> sortByName(Student[] students, boolean allSteps) {
+    public static List<Student[]> sort(Student[] students, boolean allSteps, String compareBy) {
         sortedStudents = new ArrayList<>();
-
+        MergeSort.compareBy = compareBy;
         if (students.length < 2) {
             sortedStudents.add(students);
             return sortedStudents;
@@ -136,25 +140,27 @@ public class MergeSort {
         MergeSort.students = students;
         MergeSort.allSteps = allSteps;
 
-        mergeSortByName(0, students.length - 1);
+        mergeSortStudents(0, students.length - 1);
 
         if (!allSteps) sortedStudents.add(students);
 
         return sortedStudents;
     }
-    static void mergeSortByName(int start, int end) {
+
+    static void mergeSortStudents(int start, int end) {
 
         int middle;
 
         if (start < end) {
             middle = (end + start) / 2;
-            mergeSortByName(start, middle);
-            mergeSortByName(middle + 1, end);
-            mergeByName(start, middle, end);
+            mergeSortStudents(start, middle);
+            mergeSortStudents(middle + 1, end);
+            mergeStudents(start, middle, end);
 
         }
     }
-    static void mergeByName(int start, int middle, int end) {
+
+    static void mergeStudents(int start, int middle, int end) {
 
         tempStudents = students.clone();
 
@@ -163,160 +169,7 @@ public class MergeSort {
         int x = start;
 
         while (i <= middle && j <= end) {
-            if (tempStudents[i].compareByName(tempStudents[j])<0)
-                students[x++] = tempStudents[i++];
-            else
-                students[x++] = tempStudents[j++];
-        }
-
-        while (i <= middle) students[x++] = tempStudents[i++];
-        while (j <= end) students[x++] = tempStudents[j++];
-
-        if (allSteps) sortedStudents.add(students.clone());
-    }
-
-    public static List<Student[]> sortBySurname(Student[] students, boolean allSteps) {
-        sortedStudents = new ArrayList<>();
-
-        if (students.length < 2) {
-            sortedStudents.add(students);
-            return sortedStudents;
-        }
-
-        tempStudents = new Student[students.length];
-        MergeSort.students = students;
-        MergeSort.allSteps = allSteps;
-
-        mergeSortBySurname(0, students.length - 1);
-
-        if (!allSteps) sortedStudents.add(students);
-
-        return sortedStudents;
-    }
-    static void mergeSortBySurname(int start, int end) {
-
-        int middle;
-
-        if (start < end) {
-            middle = (end + start) / 2;
-            mergeSortBySurname(start, middle);
-            mergeSortBySurname(middle + 1, end);
-            mergeBySurname(start, middle, end);
-
-        }
-    }
-    static void mergeBySurname(int start, int middle, int end) {
-
-        tempStudents = students.clone();
-
-        int i = start;
-        int j = middle + 1;
-        int x = start;
-
-        while (i <= middle && j <= end) {
-            if (tempStudents[i].compareBySurname(tempStudents[j])<0)
-                students[x++] = tempStudents[i++];
-            else
-                students[x++] = tempStudents[j++];
-        }
-
-        while (i <= middle) students[x++] = tempStudents[i++];
-        while (j <= end) students[x++] = tempStudents[j++];
-
-        if (allSteps) sortedStudents.add(students.clone());
-    }
-
-    public static List<Student[]> sortById(Student[] students, boolean allSteps) {
-        sortedStudents = new ArrayList<>();
-
-        if (students.length < 2) {
-            sortedStudents.add(students);
-            return sortedStudents;
-        }
-
-        tempStudents = new Student[students.length];
-        MergeSort.students = students;
-        MergeSort.allSteps = allSteps;
-
-        mergeSortById(0, students.length - 1);
-
-        if (!allSteps) sortedStudents.add(students);
-
-        return sortedStudents;
-    }
-    static void mergeSortById(int start, int end) {
-
-        int middle;
-
-        if (start < end) {
-            middle = (end + start) / 2;
-            mergeSortById(start, middle);
-            mergeSortById(middle + 1, end);
-            mergeById(start, middle, end);
-
-        }
-    }
-    static void mergeById(int start, int middle, int end) {
-
-        tempStudents = students.clone();
-
-        int i = start;
-        int j = middle + 1;
-        int x = start;
-
-        while (i <= middle && j <= end) {
-            if (tempStudents[i].compareById(tempStudents[j])<0)
-                students[x++] = tempStudents[i++];
-            else
-                students[x++] = tempStudents[j++];
-        }
-
-        while (i <= middle) students[x++] = tempStudents[i++];
-        while (j <= end) students[x++] = tempStudents[j++];
-
-        if (allSteps) sortedStudents.add(students.clone());
-    }
-
-    public static List<Student[]> sortByAge(Student[] students, boolean allSteps) {
-        sortedStudents = new ArrayList<>();
-
-        if (students.length < 2) {
-            sortedStudents.add(students);
-            return sortedStudents;
-        }
-
-        tempStudents = new Student[students.length];
-        MergeSort.students = students;
-        MergeSort.allSteps = allSteps;
-
-        mergeSortByAge(0, students.length - 1);
-
-        if (!allSteps) sortedStudents.add(students);
-
-        return sortedStudents;
-    }
-    static void mergeSortByAge(int start, int end) {
-
-        int middle;
-
-        if (start < end) {
-            middle = (end + start) / 2;
-            mergeSortByAge(start, middle);
-            mergeSortByAge(middle + 1, end);
-            mergeByAge(start, middle, end);
-
-        }
-    }
-    static void mergeByAge(int start, int middle, int end) {
-
-        tempStudents = students.clone();
-
-        int i = start;
-        int j = middle + 1;
-        int x = start;
-
-        while (i <= middle && j <= end) {
-            if (tempStudents[i].compareByAge(tempStudents[j])<0)
+            if (tempStudents[i].compareBy(tempStudents[j], compareBy) < 0)
                 students[x++] = tempStudents[i++];
             else
                 students[x++] = tempStudents[j++];
@@ -328,4 +181,5 @@ public class MergeSort {
         if (allSteps) sortedStudents.add(students.clone());
     }
 }
+
 

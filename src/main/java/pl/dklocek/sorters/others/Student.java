@@ -8,7 +8,8 @@ public class Student implements Comparable<Student>{
     protected  String name;
     @JsonProperty("surname")
     private String surname;
-    @JsonProperty("name")
+
+ /*   @JsonProperty("name")
     public void setName(String name) {
         this.name = name;
     }
@@ -26,7 +27,7 @@ public class Student implements Comparable<Student>{
     @JsonProperty("age")
     public void setAge(int age) {
         this.age = age;
-    }
+    }    */
 
     @JsonProperty("id")
     private int id;
@@ -66,7 +67,7 @@ public class Student implements Comparable<Student>{
         return age;
     }
 
-    public int compareByName(Student student){
+ /*   public int compareByName(Student student){
         if(this.name.compareToIgnoreCase(student.getName())>0)return 1;
         else if(this.name.compareToIgnoreCase(student.getName())<0)return -1;
         else if(this.name.compareToIgnoreCase(student.getName())==0 && this.name.compareTo(student.getName())>0)return 1;
@@ -107,6 +108,46 @@ public class Student implements Comparable<Student>{
         else if(this.age==student.getAge())return 0;
         else return -1;
     }
+    */
+    public int compareBy(Student student, String compareBy){
+
+        switch (compareBy){
+            case "name":
+                if(this.name.compareToIgnoreCase(student.getName())>0)return 1;
+                else if(this.name.compareToIgnoreCase(student.getName())<0)return -1;
+                else if(this.name.compareToIgnoreCase(student.getName())==0 && this.name.compareTo(student.getName())>0)return 1;
+                else if(this.name.compareToIgnoreCase(student.getName())==0 && this.name.compareTo(student.getName())<0)return -1;
+                else {
+                    if(this.surname.compareToIgnoreCase(student.getSurname())>0)return 1;
+                    else if(this.surname.compareToIgnoreCase(student.getSurname())<0)return -1;
+                    else if(this.surname.compareToIgnoreCase(student.getSurname())==0 && this.surname.compareTo(student.getSurname())>0)return 1;
+                    else if(this.surname.compareToIgnoreCase(student.getSurname())==0 && this.surname.compareTo(student.getSurname())<0)return -1;
+                    else return 0;
+                }
+            case "surname":
+                if(this.surname.compareToIgnoreCase(student.getSurname())>0)return 1;
+                else if(this.surname.compareToIgnoreCase(student.getSurname())<0)return -1;
+                else if(this.surname.compareToIgnoreCase(student.getSurname())==0 && this.surname.compareTo(student.getSurname())>0)return 1;
+                else if(this.surname.compareToIgnoreCase(student.getSurname())==0 && this.surname.compareTo(student.getSurname())<0)return -1;
+                else {
+                    if(this.name.compareToIgnoreCase(student.getName())>0)return 1;
+                    else if(this.name.compareToIgnoreCase(student.getName())<0)return -1;
+                    else if(this.name.compareToIgnoreCase(student.getName())==0 && this.name.compareTo(student.getName())>0)return 1;
+                    else if(this.name.compareToIgnoreCase(student.getName())==0 && this.name.compareTo(student.getName())<0)return -1;
+                    else return 0;
+                }
+            case "age":
+                if(this.age>student.getAge())return 1;
+                else if(this.age==student.getAge())return 0;
+                else return -1;
+            default:
+                if(this.id>student.getId())return 1;
+                else if(this.id==student.getId())return 0;
+                else return -1;
+
+        }
+
+    }
 
     @Override
     public String toString() {
@@ -122,4 +163,6 @@ public class Student implements Comparable<Student>{
     public int compareTo(Student o) {
         return toString().compareTo(o.toString());
     }
+
+
 }

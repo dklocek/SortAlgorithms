@@ -71,7 +71,7 @@ public class InsertionSort {
         return sorted;
     }
 
-    public static List<Student[]> sortByName(Student[] students, boolean allSteps) {
+    public static List<Student[]> sort(Student[] students, boolean allSteps, String compareBy) {
 
         List<Student[]> sorted = new ArrayList<>();
 
@@ -88,7 +88,7 @@ public class InsertionSort {
             index = i;
             inserted = students[i];
 
-            while (index > 0 && students[index - 1].compareByName(inserted) > 0) {
+            while (index > 0 && students[index - 1].compareBy(inserted,compareBy) > 0) {
                 students[index] = students[index - 1];
                 index--;
             }
@@ -103,99 +103,5 @@ public class InsertionSort {
         return sorted;
     }
 
-    public static List<Student[]> sortBySurname(Student[] students, boolean allSteps) {
 
-        List<Student[]> sorted = new ArrayList<>();
-
-        if (students.length < 2) {
-            sorted.add(students);
-            return sorted;
-        }
-
-        int index;
-        Student inserted;
-
-        for (int i = 1; i < students.length; i++) {
-
-            index = i;
-            inserted = students[i];
-
-            while (index > 0 && students[index - 1].compareBySurname(inserted) > 0) {
-                students[index] = students[index - 1];
-                index--;
-            }
-            students[index] = inserted;
-
-            if (allSteps) sorted.add(students.clone());
-
-        }
-
-        if (!allSteps) sorted.add(students);
-
-        return sorted;
-    }
-
-    public static List<Student[]> sortById(Student[] students, boolean allSteps) {
-
-        List<Student[]> sorted = new ArrayList<>();
-
-        if (students.length < 2) {
-            sorted.add(students);
-            return sorted;
-        }
-
-        int index;
-        Student inserted;
-
-        for (int i = 1; i < students.length; i++) {
-
-            index = i;
-            inserted = students[i];
-
-            while (index > 0 && students[index - 1].compareById(inserted) > 0) {
-                students[index] = students[index - 1];
-                index--;
-            }
-            students[index] = inserted;
-
-            if (allSteps) sorted.add(students.clone());
-
-        }
-
-        if (!allSteps) sorted.add(students);
-
-        return sorted;
-    }
-
-    public static List<Student[]> sortByAge(Student[] students, boolean allSteps) {
-
-        List<Student[]> sorted = new ArrayList<>();
-
-        if (students.length < 2) {
-            sorted.add(students);
-            return sorted;
-        }
-
-        int index;
-        Student inserted;
-
-        for (int i = 1; i < students.length; i++) {
-
-            index = i;
-            inserted = students[i];
-
-            while (index > 0 && students[index - 1].compareByAge(inserted) > 0) {
-                students[index] = students[index - 1];
-                index--;
-            }
-            students[index] = inserted;
-
-            if (allSteps) sorted.add(students.clone());
-
-        }
-
-        if (!allSteps) sorted.add(students);
-
-        return sorted;
-    }
 }

@@ -1,12 +1,12 @@
 package pl.dklocek.sorters.implementations;
 
-import org.junit.Assert;
 import org.junit.Test;
 import pl.dklocek.sorters.others.Student;
 
 import java.util.Arrays;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 public class QuickSortTest {
 
@@ -72,13 +72,29 @@ public class QuickSortTest {
 
     @Test
     public void testSortStudent() throws Exception {
-        Student[] testArray = {new Student("Dawid", "Klocek", 1, 33), new Student("Adam", "Wiśniewski", 3, 22),
-                new Student("Dawid", "Wójcik", 2, 32)};
-        Student[] sorted;
+        Student one = new Student("Dawid", "Klocek", 1, 33);
+        Student two = new Student("Adam", "Wiśniewski", 3, 22);
+        Student three = new Student("Dawid", "Wójcik", 2, 32);
+        Student[] testArray = {one,two,three};
 
-        sorted = testArray.clone();
-        Arrays.sort(sorted, Student::compareByName);
-        Assert.assertArrayEquals(sorted, QuickSort.sortByName(testArray, false).get(0));
+        String byName = two.toString()+one.toString()+three.toString();
+        String bySurname = one.toString()+two.toString()+three.toString();
+        String byId = one.toString()+three.toString()+two.toString();
+        String byAge = two.toString()+three.toString()+one.toString();
+
+        Student[] soretd = QuickSort.sort(testArray,false,"name").get(0);
+        assertEquals(byName, soretd[0].toString()+soretd[1].toString()+soretd[2].toString() );
+
+        soretd = QuickSort.sort(testArray,false,"surname").get(0);
+        assertEquals(bySurname, soretd[0].toString()+soretd[1].toString()+soretd[2].toString() );
+
+        soretd = QuickSort.sort(testArray,false,"id").get(0);
+        assertEquals(byId, soretd[0].toString()+soretd[1].toString()+soretd[2].toString() );
+
+        soretd = QuickSort.sort(testArray,false,"age").get(0);
+        assertEquals(byAge, soretd[0].toString()+soretd[1].toString()+soretd[2].toString() );
+
+
     }
 
 }

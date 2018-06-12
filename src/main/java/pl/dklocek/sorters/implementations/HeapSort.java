@@ -49,7 +49,7 @@ public class HeapSort {
         swap(numbers, 0, end - 1);
         if (allSteps) sorted.add(numbers);
         if (end > 1)
-            sort(numbers,allSteps,end - 1);
+            sort(numbers, allSteps, end - 1);
 
         if (!allSteps) sorted.add(numbers);
         return sorted;
@@ -112,13 +112,13 @@ public class HeapSort {
         swap(table, 0, end - 1);
         if (allSteps) sortedString.add(table);
         if (end > 1)
-            sort(table,allSteps,end - 1);
+            sort(table, allSteps, end - 1);
 
         if (!allSteps) sortedString.add(table);
         return sortedString;
     }
 
-    public static List<Student[]> sortByName(Student[] students, boolean allSteps, int end) {
+    public static List<Student[]> sort(Student[] students, boolean allSteps, int end, String compareBy) {
         List<Student[]> sorted = new ArrayList<>();
 
         if (students.length < 2) {
@@ -135,18 +135,19 @@ public class HeapSort {
             if (leftChild + 1 < end) {
                 rightChild = lastParent * 2 + 2;
 
-                if (students[rightChild].compareByName(students[leftChild]) > 0 && students[rightChild].compareByName(students[lastParent]) > 0) {
+                if (students[rightChild].compareBy(students[leftChild], compareBy) > 0 && students[rightChild].compareBy(students[lastParent],compareBy)>
+                0){
                     swap(students, rightChild, lastParent);
                     if (allSteps) sorted.add(students);
                 }
-                if (students[leftChild].compareByName(students[rightChild]) > 0 && students[leftChild].compareByName(students[lastParent]) > 0) {
+                if (students[leftChild].compareBy(students[rightChild], compareBy) > 0 && students[leftChild].compareBy(students[lastParent], compareBy) > 0) {
                     swap(students, leftChild, lastParent);
                     if (allSteps) sorted.add(students);
                 }
             } else {
 
 
-                if (students[leftChild].compareByName(students[lastParent]) > 0) {
+                if (students[leftChild].compareBy(students[lastParent], compareBy) > 0) {
                     swap(students, leftChild, lastParent);
                     if (allSteps) sorted.add(students);
                 }
@@ -158,147 +159,10 @@ public class HeapSort {
         swap(students, 0, end - 1);
         if (allSteps) sorted.add(students);
         if (end > 1)
-            sortByName(students,allSteps,end - 1);
+            sort(students, allSteps, end - 1, compareBy);
 
         if (!allSteps) sorted.add(students);
         return sorted;
     }
 
-    public static List<Student[]> sortBySurname(Student[] students, boolean allSteps, int end) {
-        List<Student[]> sorted = new ArrayList<>();
-
-        if (students.length < 2) {
-            sorted.add(students);
-            return sorted;
-        }
-
-        int lastParent = end / 2 - 1;
-        int leftChild;
-        int rightChild;
-
-        while (lastParent > -1) {
-            leftChild = lastParent * 2 + 1;
-            if (leftChild + 1 < end) {
-                rightChild = lastParent * 2 + 2;
-
-                if (students[rightChild].compareBySurname(students[leftChild]) > 0 && students[rightChild].compareBySurname(students[lastParent]) > 0) {
-                    swap(students, rightChild, lastParent);
-                    if (allSteps) sorted.add(students);
-                }
-                if (students[leftChild].compareBySurname(students[rightChild]) > 0 && students[leftChild].compareBySurname(students[lastParent]) > 0) {
-                    swap(students, leftChild, lastParent);
-                    if (allSteps) sorted.add(students);
-                }
-            } else {
-
-
-                if (students[leftChild].compareBySurname(students[lastParent]) > 0) {
-                    swap(students, leftChild, lastParent);
-                    if (allSteps) sorted.add(students);
-                }
-            }
-
-            lastParent -= 1;
-        }
-
-        swap(students, 0, end - 1);
-        if (allSteps) sorted.add(students);
-        if (end > 1)
-            sortBySurname(students,allSteps,end - 1);
-
-        if (!allSteps) sorted.add(students);
-        return sorted;
-    }
-
-    public static List<Student[]> sortById(Student[] students, boolean allSteps, int end) {
-        List<Student[]> sorted = new ArrayList<>();
-
-        if (students.length < 2) {
-            sorted.add(students);
-            return sorted;
-        }
-
-        int lastParent = end / 2 - 1;
-        int leftChild;
-        int rightChild;
-
-        while (lastParent > -1) {
-            leftChild = lastParent * 2 + 1;
-            if (leftChild + 1 < end) {
-                rightChild = lastParent * 2 + 2;
-
-                if (students[rightChild].compareById(students[leftChild]) > 0 && students[rightChild].compareById(students[lastParent]) > 0) {
-                    swap(students, rightChild, lastParent);
-                    if (allSteps) sorted.add(students);
-                }
-                if (students[leftChild].compareById(students[rightChild]) > 0 && students[leftChild].compareById(students[lastParent]) > 0) {
-                    swap(students, leftChild, lastParent);
-                    if (allSteps) sorted.add(students);
-                }
-            } else {
-
-
-                if (students[leftChild].compareById(students[lastParent]) > 0) {
-                    swap(students, leftChild, lastParent);
-                    if (allSteps) sorted.add(students);
-                }
-            }
-
-            lastParent -= 1;
-        }
-
-        swap(students, 0, end - 1);
-        if (allSteps) sorted.add(students);
-        if (end > 1)
-            sortById(students,allSteps,end - 1);
-
-        if (!allSteps) sorted.add(students);
-        return sorted;
-    }
-
-    public static List<Student[]> sortByAge(Student[] students, boolean allSteps, int end) {
-        List<Student[]> sorted = new ArrayList<>();
-
-        if (students.length < 2) {
-            sorted.add(students);
-            return sorted;
-        }
-
-        int lastParent = end / 2 - 1;
-        int leftChild;
-        int rightChild;
-
-        while (lastParent > -1) {
-            leftChild = lastParent * 2 + 1;
-            if (leftChild + 1 < end) {
-                rightChild = lastParent * 2 + 2;
-
-                if (students[rightChild].compareByAge(students[leftChild]) > 0 && students[rightChild].compareByAge(students[lastParent]) > 0) {
-                    swap(students, rightChild, lastParent);
-                    if (allSteps) sorted.add(students);
-                }
-                if (students[leftChild].compareByAge(students[rightChild]) > 0 && students[leftChild].compareByAge(students[lastParent]) > 0) {
-                    swap(students, leftChild, lastParent);
-                    if (allSteps) sorted.add(students);
-                }
-            } else {
-
-
-                if (students[leftChild].compareByAge(students[lastParent]) > 0) {
-                    swap(students, leftChild, lastParent);
-                    if (allSteps) sorted.add(students);
-                }
-            }
-
-            lastParent -= 1;
-        }
-
-        swap(students, 0, end - 1);
-        if (allSteps) sorted.add(students);
-        if (end > 1)
-            sortByAge(students,allSteps,end - 1);
-
-        if (!allSteps) sorted.add(students);
-        return sorted;
-    }
 }

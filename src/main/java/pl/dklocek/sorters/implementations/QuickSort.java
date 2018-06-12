@@ -98,19 +98,20 @@ public class QuickSort {
     }
 
     private static List<Student[]> sortedStudents;
-    public static List<Student[]> sortByName(Student[] students, boolean allSteps) {
+    private static String compareBy;
+    public static List<Student[]> sort(Student[] students, boolean allSteps, String compareBy) {
         sortedStudents = new ArrayList<>();
-
+        QuickSort.compareBy=compareBy;
         if (students.length < 2) {
             sortedStudents.add(students);
             return sortedStudents;
         }
 
-        sortingByName(allSteps, students, 0, students.length - 1);
+        sortingStudents(allSteps, students, 0, students.length - 1);
         sortedStudents.add(students);
         return sortedStudents;
     }
-    public static void sortingByName(boolean allSteps, Student[] students, int start, int end) {
+    public static void sortingStudents(boolean allSteps, Student[] students, int start, int end) {
         Student pivot = students[end];
         int j = start;
         Student temp;
@@ -118,7 +119,7 @@ public class QuickSort {
         if (j < end) {
             for (int i = j; i < end; i++) {
 
-                if (students[i].compareByName(pivot) <= 0) {
+                if (students[i].compareBy(pivot,compareBy) <= 0) {
                     Swap.swap(students, i, j);
                     j++;
                     if (allSteps) sortedStudents.add(students.clone());
@@ -132,12 +133,12 @@ public class QuickSort {
 
             if (((j - 1) - start) < end - (j + 1)) {
                 if (j > start) {
-                    sortingByName(allSteps, students, start, j - 1);
-                    sortingByName(allSteps, students, j + 1, end);
+                    sortingStudents(allSteps, students, start, j - 1);
+                    sortingStudents(allSteps, students, j + 1, end);
                 }
             } else {
-                sortingByName(allSteps, students, j + 1, end);
-                sortingByName(allSteps, students, start, j - 1);
+                sortingStudents(allSteps, students, j + 1, end);
+                sortingStudents(allSteps, students, start, j - 1);
             }
         }
 

@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class SolutionSelector {
 
-    public static List SolutionSelector(String dataToSort, boolean steps, String method){
+    public static List select(String dataToSort, boolean steps, String method){
 
         int[] numbersToSort = {};
         String[] stringsToSort = {};
@@ -41,6 +41,26 @@ public class SolutionSelector {
             default:
                 if (sortingDriver == 0) return QuickSort.sort(numbersToSort, steps);
                 else return QuickSort.sort(stringsToSort, steps);
+        }
+    }
+
+    public static List selectStudent(Student[] dataToSort, boolean steps, String method, String sortBy) {
+
+        switch (method) {
+            case "bubble":
+                return BubbleSort.sort(dataToSort, steps, sortBy);
+            case "insertion":
+                return InsertionSort.sort(dataToSort, steps, sortBy);
+            //   case "selection":
+            //        return SelectionSort.sort(stringsToSort, steps);
+            case "merge":
+                return MergeSort.sort(dataToSort, steps, sortBy);
+            case "heap":
+                return HeapSort.sort(dataToSort, steps, dataToSort.length, sortBy);
+            default:
+                return QuickSort.sort(dataToSort, steps, sortBy);
+
+
         }
     }
 }
