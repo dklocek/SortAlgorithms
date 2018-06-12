@@ -1,10 +1,36 @@
 package pl.dklocek.sorters.others;
 
-public class Student implements Comparable<Student>{
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+public class Student implements Comparable<Student>{
+    @JsonProperty("name")
     protected  String name;
+    @JsonProperty("surname")
     private String surname;
+    @JsonProperty("name")
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @JsonProperty("surname")
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    @JsonProperty("id")
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @JsonProperty("age")
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    @JsonProperty("id")
     private int id;
+    @JsonProperty("age")
     private int age;
 
     public Student(String name, String surname, int id, int age) {
@@ -13,6 +39,16 @@ public class Student implements Comparable<Student>{
         this.id = id;
         this.age = age;
     }
+    @JsonCreator
+    public Student(@JsonProperty("name") String name,@JsonProperty("surname") String surname,
+                   @JsonProperty("id")String id,@JsonProperty("age") String age) {
+        this.name = name;
+        this.surname = surname;
+        this.id = Integer.parseInt(id);
+        this.age = Integer.parseInt(age);
+    }
+
+
 
     public String getName() {
         return name;
