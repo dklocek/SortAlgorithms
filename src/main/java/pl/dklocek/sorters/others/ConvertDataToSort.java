@@ -2,16 +2,16 @@ package pl.dklocek.sorters.others;
 
 
 public class ConvertDataToSort {
-  public static int[] convertToInt(String numbersInString){
+  public static Integer[] convertToInt(String numbersInString){
 
       if(numbersInString.length()==1){
-          int[] number = new int[1];
+          Integer[] number = new Integer[1];
           number[0] = Integer.parseInt(numbersInString);
           return number;
       }
 
       String[] numbersInStringArray = numbersInString.split(",");
-      int[] numbers = new int[numbersInStringArray.length];
+      Integer[] numbers = new Integer[numbersInStringArray.length];
       for (int i = 0; i < numbersInStringArray.length; i++) {
 
           numbers[i] = Integer.parseInt(numbersInStringArray[i]);

@@ -1,35 +1,38 @@
 package pl.dklocek.sorters.implementations;
 
+import pl.dklocek.sorters.interfaces.Sorter;
 import pl.dklocek.sorters.others.Student;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MergeSort {
+public class MergeSort implements Sorter {
     /*---------- INT ---  INT ---- INT -----------*/
-    private static List<int[]> sorted;
-    private static int[] temp;
-    private static int[] numbers;
+    private static List<Integer[]> sorted;
+    private static Integer[] temp;
+    private static Integer[] numbers;
     private static boolean allSteps;
 
-    public static List<int[]> sort(int[] numbers, boolean allSteps) {
+    @Override
+    public List<Integer[]> sort(Integer[] numbers, Boolean allSteps) {
         sorted = new ArrayList<>();
 
         if (numbers.length < 2) {
-            sorted.add(numbers);
+            sorted.add(numbers.clone());
             return sorted;
         }
 
-        temp = new int[numbers.length];
+        temp = new Integer[numbers.length];
         MergeSort.numbers = numbers;
         MergeSort.allSteps = allSteps;
 
         mergeSort(0, numbers.length - 1);
 
-        if (!allSteps) sorted.add(numbers);
+        if (!allSteps) sorted.add(numbers.clone());
 
         return sorted;
     }
+
 
     static void mergeSort(int start, int end) {
 
@@ -70,11 +73,12 @@ public class MergeSort {
     private static String[] tempString;
     private static String[] table;
 
-    public static List<String[]> sort(String[] table, boolean allSteps) {
+    @Override
+    public List<String[]> sort(String[] table, Boolean allSteps) {
         sortedString = new ArrayList<>();
 
         if (table.length < 2) {
-            sortedString.add(table);
+            sortedString.add(table.clone());
             return sortedString;
         }
 
@@ -84,7 +88,7 @@ public class MergeSort {
 
         mergeSortString(0, table.length - 1);
 
-        if (!allSteps) sortedString.add(table);
+        if (!allSteps) sortedString.add(table.clone());
 
         return sortedString;
     }
@@ -128,11 +132,12 @@ public class MergeSort {
     private static Student[] students;
     private static String compareBy;
 
-    public static List<Student[]> sort(Student[] students, boolean allSteps, String compareBy) {
+    @Override
+    public  List<Student[]> sort(Student[] students, Boolean allSteps, String compareBy) {
         sortedStudents = new ArrayList<>();
         MergeSort.compareBy = compareBy;
         if (students.length < 2) {
-            sortedStudents.add(students);
+            sortedStudents.add(students.clone());
             return sortedStudents;
         }
 
@@ -142,7 +147,7 @@ public class MergeSort {
 
         mergeSortStudents(0, students.length - 1);
 
-        if (!allSteps) sortedStudents.add(students);
+        if (!allSteps) sortedStudents.add(students.clone());
 
         return sortedStudents;
     }

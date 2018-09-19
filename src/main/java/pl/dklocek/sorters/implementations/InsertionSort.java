@@ -1,15 +1,17 @@
 package pl.dklocek.sorters.implementations;
 
+import pl.dklocek.sorters.interfaces.Sorter;
 import pl.dklocek.sorters.others.Student;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class InsertionSort {
+public class InsertionSort implements Sorter {
 
-    public static List<int[]> sort(int[] numbers, boolean allSteps) {
+    @Override
+    public  List<Integer[]> sort(Integer[] numbers, Boolean allSteps) {
 
-        List<int[]> sorted = new ArrayList<>();
+        List<Integer[]> sorted = new ArrayList<>();
 
         if (numbers.length < 2) {
             sorted.add(numbers);
@@ -38,7 +40,8 @@ public class InsertionSort {
         return sorted;
     }
 
-    public static List<String[]> sort(String[] table, boolean allSteps) {
+    @Override
+    public  List<String[]> sort(String[] table, Boolean allSteps) {
 
         List<String[]> sorted = new ArrayList<>();
 
@@ -71,12 +74,13 @@ public class InsertionSort {
         return sorted;
     }
 
-    public static List<Student[]> sort(Student[] students, boolean allSteps, String compareBy) {
+    @Override
+    public  List<Student[]> sort(Student[] students, Boolean allSteps, String compareBy) {
 
         List<Student[]> sorted = new ArrayList<>();
 
         if (students.length < 2) {
-            sorted.add(students);
+            sorted.add(students.clone());
             return sorted;
         }
 
@@ -98,7 +102,7 @@ public class InsertionSort {
 
         }
 
-        if (!allSteps) sorted.add(students);
+        if (!allSteps) sorted.add(students.clone());
 
         return sorted;
     }

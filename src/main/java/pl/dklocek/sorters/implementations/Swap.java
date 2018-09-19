@@ -5,7 +5,7 @@ import pl.dklocek.sorters.others.Student;
 
 public class Swap {
 
-    public static void swap(int[] numbers, int a, int b) {
+    public static void swap(Integer[] numbers, int a, int b) {
         int temp;
         temp = numbers[a];
         numbers[a] = numbers[b];

@@ -1,5 +1,6 @@
 package pl.dklocek.sorters.implementations;
 
+import pl.dklocek.sorters.interfaces.Sorter;
 import pl.dklocek.sorters.others.Student;
 
 import java.util.ArrayList;
@@ -7,10 +8,30 @@ import java.util.List;
 
 import static pl.dklocek.sorters.implementations.Swap.swap;
 
-public class HeapSort {
+public class HeapSort implements Sorter {
 
-    public static List<int[]> sort(int[] numbers, boolean allSteps, int end) {
-        List<int[]> sorted = new ArrayList<>();
+    @Override
+    public List<Integer[]> sort(Integer[] data, Boolean allSteps){
+
+        return sorting(data,allSteps,data.length);
+    }
+
+    @Override
+    public List<String[]> sort(String[] data, Boolean allSteps){
+
+        return sorting(data,allSteps,data.length);
+    }
+
+    @Override
+    public List<Student[]> sort(Student[] data, Boolean allSteps, String compareBy){
+
+        return sorting(data,allSteps,data.length, compareBy);
+    }
+
+
+
+    private  static List<Integer[]> sorting(Integer[] numbers, boolean allSteps, int end) {
+        List<Integer[]> sorted = new ArrayList<>();
 
         if (numbers.length < 2) {
             sorted.add(numbers);
@@ -49,13 +70,13 @@ public class HeapSort {
         swap(numbers, 0, end - 1);
         if (allSteps) sorted.add(numbers);
         if (end > 1)
-            sort(numbers, allSteps, end - 1);
+            sorting(numbers, allSteps, end - 1);
 
         if (!allSteps) sorted.add(numbers);
         return sorted;
     }
 
-    public static List<String[]> sort(String[] table, boolean allSteps, int end) {
+    public static List<String[]> sorting(String[] table, boolean allSteps, int end) {
         List<String[]> sortedString = new ArrayList<>();
 
         if (table.length < 2) {
@@ -112,17 +133,17 @@ public class HeapSort {
         swap(table, 0, end - 1);
         if (allSteps) sortedString.add(table);
         if (end > 1)
-            sort(table, allSteps, end - 1);
+            sorting(table, allSteps, end - 1);
 
         if (!allSteps) sortedString.add(table);
         return sortedString;
     }
 
-    public static List<Student[]> sort(Student[] students, boolean allSteps, int end, String compareBy) {
+    public static List<Student[]> sorting(Student[] students, Boolean allSteps, int end, String compareBy) {
         List<Student[]> sorted = new ArrayList<>();
 
         if (students.length < 2) {
-            sorted.add(students);
+            sorted.add(students.clone());
             return sorted;
         }
 
@@ -159,7 +180,7 @@ public class HeapSort {
         swap(students, 0, end - 1);
         if (allSteps) sorted.add(students);
         if (end > 1)
-            sort(students, allSteps, end - 1, compareBy);
+            sorting(students, allSteps, end - 1, compareBy);
 
         if (!allSteps) sorted.add(students);
         return sorted;

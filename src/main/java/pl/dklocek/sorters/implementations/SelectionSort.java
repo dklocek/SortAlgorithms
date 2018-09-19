@@ -1,21 +1,25 @@
 package pl.dklocek.sorters.implementations;
 
+import pl.dklocek.sorters.interfaces.Sorter;
+import pl.dklocek.sorters.others.Student;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelectionSort {
+public class SelectionSort implements Sorter{
 
-    public static List<int[]> sort(int[] numbers, boolean allSteps) {
+    @Override
+    public List<Integer[]> sort(Integer[] numbers, Boolean allSteps) {
 
-        List<int[]> sorted = new ArrayList<>();
+        List<Integer[]> sorted = new ArrayList<>();
 
         if (numbers.length < 2) {
-            sorted.add(numbers);
+            sorted.add(numbers.clone());
             return sorted;
         }
 
         int min, temp;
-        int[] foundMinAndIndex;
+        Integer[] foundMinAndIndex;
 
         for (int i = 0; i < numbers.length; i++) {
 
@@ -32,10 +36,10 @@ public class SelectionSort {
         return sorted;
     }
 
-    private static int[] findMin(int[] array, int arrayIndex) {
+    private static Integer[] findMin(Integer[] array, Integer arrayIndex) {
 
-        int min = array[arrayIndex];
-        int index = arrayIndex;
+        Integer min = array[arrayIndex];
+        Integer index = arrayIndex;
 
         for (int i = arrayIndex + 1; i < array.length; i++) {
             if (array[i] < min) {
@@ -44,10 +48,11 @@ public class SelectionSort {
             }
         }
 
-        return new int[]{min, index};
+        return new Integer[]{min, index};
     }
 
-    public static List<String[]> sort(String[] table, boolean allSteps) {
+    @Override
+    public List<String[]> sort(String[] table, Boolean allSteps) {
 
         List<String[]> sorted = new ArrayList<>();
 
@@ -87,5 +92,16 @@ public class SelectionSort {
         }
 
         return new String[]{min, ""+index};
+    }
+
+
+    @Override
+    public List<Student[]> sort(Student[] data, Boolean allSteps, String sortBy) {
+
+        List<Student[]> sorted = new ArrayList<>();
+        Student[] students = new Student[]{};
+        students[0]= new Student("Adam", "Jan",1,2);
+        sorted.add(students);
+        return sorted;
     }
 }

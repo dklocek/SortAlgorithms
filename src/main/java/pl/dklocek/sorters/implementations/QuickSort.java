@@ -1,19 +1,21 @@
 package pl.dklocek.sorters.implementations;
 
 
+import pl.dklocek.sorters.interfaces.Sorter;
 import pl.dklocek.sorters.others.Student;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuickSort {
+public class QuickSort implements Sorter {
 
-    private static List<int[]> sorted;
-    public static List<int[]> sort(int[] numbers, boolean allSteps) {
+    private static List<Integer[]> sorted;
+    @Override
+    public List<Integer[]> sort(Integer[] numbers, Boolean allSteps) {
         sorted = new ArrayList<>();
 
         if (numbers.length < 2) {
-            sorted.add(numbers);
+            sorted.add(numbers.clone());
             return sorted;
         }
 
@@ -21,7 +23,8 @@ public class QuickSort {
         sorted.add(numbers.clone());
         return sorted;
     }
-    public static List<int[]> sorting(boolean allSteps, int[] numbers, int start, int end) {
+
+    public static List<Integer[]> sorting(boolean allSteps, Integer[] numbers, int start, int end) {
         int pivot = numbers[end];
         int j = start;
         int temp;
@@ -54,11 +57,12 @@ public class QuickSort {
     }
 
     private static List<String[]> sortedString;
-    public static List<String[]> sort(String[] table, boolean allSteps) {
+    @Override
+    public List<String[]> sort(String[] table, Boolean allSteps) {
         sortedString = new ArrayList<>();
 
         if (table.length < 2) {
-            sortedString.add(table);
+            sortedString.add(table.clone());
             return sortedString;
         }
 
@@ -99,7 +103,9 @@ public class QuickSort {
 
     private static List<Student[]> sortedStudents;
     private static String compareBy;
-    public static List<Student[]> sort(Student[] students, boolean allSteps, String compareBy) {
+
+    @Override
+    public List<Student[]> sort(Student[] students, Boolean allSteps, String compareBy) {
         sortedStudents = new ArrayList<>();
         QuickSort.compareBy=compareBy;
         if (students.length < 2) {
@@ -108,7 +114,7 @@ public class QuickSort {
         }
 
         sortingStudents(allSteps, students, 0, students.length - 1);
-        sortedStudents.add(students);
+        sortedStudents.add(students.clone());
         return sortedStudents;
     }
     public static void sortingStudents(boolean allSteps, Student[] students, int start, int end) {

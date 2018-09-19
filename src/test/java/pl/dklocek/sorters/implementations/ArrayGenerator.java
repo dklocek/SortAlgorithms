@@ -8,9 +8,9 @@ import java.util.Random;
 
 public class ArrayGenerator {
 
-    public static int[] generate(int numberOfElements) {
+    public static Integer[] generate(int numberOfElements) {
 
-        int[] intArray = new int[numberOfElements];
+        Integer[] intArray = new Integer[numberOfElements];
         Random random = new Random();
         for (int i = 0; i < numberOfElements; i++) {
 

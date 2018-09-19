@@ -1,49 +1,32 @@
 package pl.dklocek.sorters.others;
 
 
-import pl.dklocek.sorters.implementations.*;
+import pl.dklocek.sorters.interfaces.Sorter;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CompareSorters {
 
     private static Map<String, Double> comparatorData = new HashMap<>();
+    private static String[] sortingNames = new String[]{"","bubble","insertion","quick","selection",
+            "merge","heap"};
 
 
-    public static Map compare(int[] numbers) {
+    public static Map compare(Integer[] numbers, SortersList sortersList) {
 
         Long start;
         Double elapsed;
 
-        start = System.nanoTime();
-        BubbleSort.sort(numbers, false).get(0);
-        elapsed = (System.nanoTime() - start) / 1000000.00;
-        comparatorData.put("BubbleSort", elapsed);
+        for(int i =1; i<sortersList.getSorterMap().size();i++){
+            Sorter sorter = sortersList.getSorterMap().get(sortingNames[i]);
+            start = System.nanoTime();
 
-        start = System.nanoTime();
-        InsertionSort.sort(numbers, false).get(0);
-        elapsed = (System.nanoTime() - start) / 1000000.00;
-        comparatorData.put("InsertionSort", elapsed);
+            sorter.sort(numbers,false);
 
-        start = System.nanoTime();
-        QuickSort.sort(numbers, false).get(0);
-        elapsed = (System.nanoTime() - start) / 1000000.00;
-        comparatorData.put("QuickSort", elapsed);
-
-        start = System.nanoTime();
-        SelectionSort.sort(numbers, false).get(0);
-        elapsed = (System.nanoTime() - start) / 1000000.00;
-        comparatorData.put("SelectionSort", elapsed);
-
-        start = System.nanoTime();
-        MergeSort.sort(numbers, false).get(0);
-        elapsed = (System.nanoTime() - start) / 1000000.00;
-        comparatorData.put("MergeSort", elapsed);
-
-        start = System.nanoTime();
-        HeapSort.sort(numbers, false, numbers.length).get(0);
-        elapsed = (System.nanoTime() - start) / 1000000.00;
-        comparatorData.put("HeapSort", elapsed);
+            elapsed = (System.nanoTime() - start) / 1000000.00;
+            comparatorData.put(sortingNames[i], elapsed);
+        }
 
         return comparatorData;
     }
