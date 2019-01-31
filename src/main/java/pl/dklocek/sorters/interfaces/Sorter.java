@@ -1,16 +1,11 @@
 package pl.dklocek.sorters.interfaces;
 
-
-import pl.dklocek.sorters.others.Student;
-
+import java.util.Comparator;
 import java.util.List;
 
+/**
+ * Created by Security on 2018-10-02.
+ */
 public interface Sorter {
-
-    List<Integer[]> sort(Integer[] data, Boolean allSteps);
-    List<String[]> sort(String[] data, Boolean allSteps);
-    List<Student[]> sort(Student[] data, Boolean allSteps, String sortBy);
-
-
-
+    <T> List<T> sort(List<T> input, Comparator<T> comparator);
 }

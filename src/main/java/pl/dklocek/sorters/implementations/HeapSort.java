@@ -1,41 +1,23 @@
 package pl.dklocek.sorters.implementations;
 
-import pl.dklocek.sorters.interfaces.Sorter;
-import pl.dklocek.sorters.others.Student;
+import pl.dklocek.sorters.interfaces.SorterN;
 
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
-import static pl.dklocek.sorters.implementations.Swap.swap;
-
-public class HeapSort implements Sorter {
-
+public class HeapSort implements SorterN{
     @Override
-    public List<Integer[]> sort(Integer[] data, Boolean allSteps){
+    public <T> List<T> sort(List<T> input, Comparator<T> comparator) {
 
-        return sorting(data,allSteps,data.length);
+       return sorting(input,comparator,input.size());
+
     }
 
-    @Override
-    public List<String[]> sort(String[] data, Boolean allSteps){
+    private  static <T> List<T> sorting(List<T> input, Comparator<T> compare, int end) {
 
-        return sorting(data,allSteps,data.length);
-    }
-
-    @Override
-    public List<Student[]> sort(Student[] data, Boolean allSteps, String compareBy){
-
-        return sorting(data,allSteps,data.length, compareBy);
-    }
-
-
-
-    private  static List<Integer[]> sorting(Integer[] numbers, boolean allSteps, int end) {
-        List<Integer[]> sorted = new ArrayList<>();
-
-        if (numbers.length < 2) {
-            sorted.add(numbers);
-            return sorted;
+        if (input.size() < 2) {
+           return input;
         }
 
         int lastParent = end / 2 - 1;
@@ -47,143 +29,37 @@ public class HeapSort implements Sorter {
             if (leftChild + 1 < end) {
                 rightChild = lastParent * 2 + 2;
 
-                if (numbers[rightChild] > numbers[leftChild] && numbers[rightChild] > numbers[lastParent]) {
-                    swap(numbers, rightChild, lastParent);
-                    if (allSteps) sorted.add(numbers);
+                if (compare.compare(input.get(rightChild),input.get(leftChild))>0 &&
+                        compare.compare(input.get(rightChild),input.get(lastParent))>0)
+                {
+                    Collections.swap(input, rightChild, lastParent);
+
                 }
-                if (numbers[leftChild] > numbers[rightChild] && numbers[leftChild] > numbers[lastParent]) {
-                    swap(numbers, leftChild, lastParent);
-                    if (allSteps) sorted.add(numbers);
+
+                if (compare.compare(input.get(leftChild),input.get(rightChild))>0 &&
+                        compare.compare(input.get(leftChild),input.get(lastParent))>0)
+                {
+                    Collections.swap(input, leftChild, lastParent);
+
                 }
             } else {
 
 
-                if (numbers[leftChild] > numbers[lastParent]) {
-                    swap(numbers, leftChild, lastParent);
-                    if (allSteps) sorted.add(numbers);
+                if (compare.compare(input.get(leftChild), input.get(lastParent))>0) {
+                    Collections.swap(input, leftChild, lastParent);
+
                 }
             }
 
             lastParent -= 1;
         }
 
-        swap(numbers, 0, end - 1);
-        if (allSteps) sorted.add(numbers);
+        Collections.swap(input, 0, end - 1);
+
         if (end > 1)
-            sorting(numbers, allSteps, end - 1);
+            sorting(input, compare, end - 1);
 
-        if (!allSteps) sorted.add(numbers);
-        return sorted;
+
+        return input;
     }
-
-    public static List<String[]> sorting(String[] table, boolean allSteps, int end) {
-        List<String[]> sortedString = new ArrayList<>();
-
-        if (table.length < 2) {
-            sortedString.add(table);
-            return sortedString;
-        }
-
-        int lastParent = end / 2 - 1;
-        int leftChildIndex;
-        int rightChildIndex;
-        int parentIndex = lastParent;
-
-        String rightChild;
-        String leftChild;
-        String parent;
-
-        while (parentIndex > -1) {
-            leftChildIndex = parentIndex * 2 + 1;
-            leftChild = table[leftChildIndex];
-            parent = table[parentIndex];
-
-            if (leftChildIndex + 1 < end) {
-
-                rightChildIndex = parentIndex * 2 + 2;
-                rightChild = table[rightChildIndex];
-
-                if (leftChild.compareToIgnoreCase(rightChild) > 0 || leftChild.compareToIgnoreCase(rightChild) == 0 && leftChild.compareTo(rightChild) > 0) {
-                    if (leftChild.compareToIgnoreCase(parent) > 0 || leftChild.compareToIgnoreCase(parent) == 0 && leftChild.compareTo(parent) > 0) {
-                        swap(table, leftChildIndex, parentIndex);
-                        if (allSteps) sortedString.add(table);
-                    }
-                } else {
-                    if (rightChild.compareToIgnoreCase(parent) > 0 || rightChild.compareToIgnoreCase(parent) == 0 && rightChild.compareTo(parent) > 0) {
-                        swap(table, rightChildIndex, parentIndex);
-                        if (allSteps) sortedString.add(table);
-                    }
-                }
-
-
-            } else {
-
-                leftChild = table[leftChildIndex];
-                parent = table[parentIndex];
-
-                if (leftChild.compareToIgnoreCase(parent) > 0 || leftChild.compareToIgnoreCase(parent) == 0 && leftChild.compareTo(parent) > 0) {
-                    swap(table, leftChildIndex, parentIndex);
-                    if (allSteps) sortedString.add(table);
-                }
-            }
-
-            parentIndex -= 1;
-        }
-
-        swap(table, 0, end - 1);
-        if (allSteps) sortedString.add(table);
-        if (end > 1)
-            sorting(table, allSteps, end - 1);
-
-        if (!allSteps) sortedString.add(table);
-        return sortedString;
-    }
-
-    public static List<Student[]> sorting(Student[] students, Boolean allSteps, int end, String compareBy) {
-        List<Student[]> sorted = new ArrayList<>();
-
-        if (students.length < 2) {
-            sorted.add(students.clone());
-            return sorted;
-        }
-
-        int lastParent = end / 2 - 1;
-        int leftChild;
-        int rightChild;
-
-        while (lastParent > -1) {
-            leftChild = lastParent * 2 + 1;
-            if (leftChild + 1 < end) {
-                rightChild = lastParent * 2 + 2;
-
-                if (students[rightChild].compareBy(students[leftChild], compareBy) > 0 && students[rightChild].compareBy(students[lastParent],compareBy)>
-                0){
-                    swap(students, rightChild, lastParent);
-                    if (allSteps) sorted.add(students);
-                }
-                if (students[leftChild].compareBy(students[rightChild], compareBy) > 0 && students[leftChild].compareBy(students[lastParent], compareBy) > 0) {
-                    swap(students, leftChild, lastParent);
-                    if (allSteps) sorted.add(students);
-                }
-            } else {
-
-
-                if (students[leftChild].compareBy(students[lastParent], compareBy) > 0) {
-                    swap(students, leftChild, lastParent);
-                    if (allSteps) sorted.add(students);
-                }
-            }
-
-            lastParent -= 1;
-        }
-
-        swap(students, 0, end - 1);
-        if (allSteps) sorted.add(students);
-        if (end > 1)
-            sorting(students, allSteps, end - 1, compareBy);
-
-        if (!allSteps) sorted.add(students);
-        return sorted;
-    }
-
 }

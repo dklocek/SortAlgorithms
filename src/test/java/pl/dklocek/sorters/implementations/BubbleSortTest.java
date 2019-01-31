@@ -9,7 +9,7 @@ import pl.dklocek.sorters.others.Student;
 
 import java.util.*;
 
-public class NewBubbleSortTest {
+public class BubbleSortTest {
 
     SorterN sorter = new NewSelectionSort();
     Comparator compare = new SortComparator<>();
