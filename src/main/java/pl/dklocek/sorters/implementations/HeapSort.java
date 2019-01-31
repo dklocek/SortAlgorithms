@@ -1,12 +1,12 @@
 package pl.dklocek.sorters.implementations;
 
-import pl.dklocek.sorters.interfaces.SorterN;
+import pl.dklocek.sorters.interfaces.Sorter;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class HeapSort implements SorterN{
+public class HeapSort implements Sorter {
     @Override
     public <T> List<T> sort(List<T> input, Comparator<T> comparator) {
 

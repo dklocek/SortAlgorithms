@@ -22,11 +22,14 @@ public class SortController {
     @Autowired
     SortersList sortersList;
 
+    @Autowired
+    ComparatorList comparatorList;
+
     @RequestMapping(value = "/sort")
     public List sorted1(@RequestParam(value = "table") String dataToSort, @RequestParam("method") String method,
                        @RequestParam(value = "allSteps", required = false) boolean steps) {
 
-        return SolutionSelector.select(dataToSort,steps,method, sortersList);
+        return SolutionSelector.select(dataToSort,steps,method, sortersList, comparatorList.getComparatorMapMap().get("standard"));
     }
 
     @RequestMapping(value = "/sortStudent")
@@ -47,7 +50,7 @@ public class SortController {
 
         }
 
-        return SolutionSelector.selectStudent(students1,steps,method, sortBy, sortersList);
+        return SolutionSelector.selectStudent(students1,steps,method, sortersList, comparatorList.getComparatorMapMap().get(sortBy));
     }
 
     @RequestMapping(value = "/compare")

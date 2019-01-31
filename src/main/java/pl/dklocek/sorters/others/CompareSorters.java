@@ -1,8 +1,10 @@
 package pl.dklocek.sorters.others;
 
 
+import pl.dklocek.sorters.Comparators.SortComparator;
 import pl.dklocek.sorters.interfaces.Sorter;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,7 +24,7 @@ public class CompareSorters {
             Sorter sorter = sortersList.getSorterMap().get(sortingNames[i]);
             start = System.nanoTime();
 
-            sorter.sort(numbers,false);
+            sorter.sort(Arrays.asList(numbers),new SortComparator<>());
 
             elapsed = (System.nanoTime() - start) / 1000000.00;
             comparatorData.put(sortingNames[i], elapsed);

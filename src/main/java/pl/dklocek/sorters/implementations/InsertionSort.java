@@ -1,6 +1,6 @@
 package pl.dklocek.sorters.implementations;
 
-import pl.dklocek.sorters.interfaces.SorterN;
+import pl.dklocek.sorters.interfaces.Sorter;
 
 import java.util.Comparator;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by Security on 2019-01-31.
  */
-public class InsertionSort implements SorterN{
+public class InsertionSort implements Sorter {
 
     @Override
     public <T> List<T> sort(List<T> input, Comparator<T> compare) {

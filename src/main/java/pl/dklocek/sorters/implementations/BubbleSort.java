@@ -1,12 +1,12 @@
 package pl.dklocek.sorters.implementations;
 
-import pl.dklocek.sorters.interfaces.SorterN;
+import pl.dklocek.sorters.interfaces.Sorter;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class BubbleSort implements SorterN{
+public class BubbleSort implements Sorter {
     @Override
     public <T> List<T> sort(List<T> input, Comparator<T> compare) {
 

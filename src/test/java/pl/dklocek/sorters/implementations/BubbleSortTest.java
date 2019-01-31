@@ -4,14 +4,14 @@ import org.junit.Assert;
 import pl.dklocek.sorters.Comparators.SortComparator;
 import pl.dklocek.sorters.Comparators.StudentAgeCompare;
 import pl.dklocek.sorters.Comparators.StudentIdCompare;
-import pl.dklocek.sorters.interfaces.SorterN;
+import pl.dklocek.sorters.interfaces.Sorter;
 import pl.dklocek.sorters.others.Student;
 
 import java.util.*;
 
 public class BubbleSortTest {
 
-    SorterN sorter = new NewSelectionSort();
+    Sorter sorter = new SelectionSort();
     Comparator compare = new SortComparator<>();
 
     @org.junit.Test

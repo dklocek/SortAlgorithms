@@ -1,11 +1,11 @@
 package pl.dklocek.sorters.implementations;
-import pl.dklocek.sorters.interfaces.SorterN;
+import pl.dklocek.sorters.interfaces.Sorter;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class MergeSort implements SorterN {
+public class MergeSort implements Sorter {
 
    @Override
     public <T> List<T> sort(List<T> input, Comparator<T> comparator) {
