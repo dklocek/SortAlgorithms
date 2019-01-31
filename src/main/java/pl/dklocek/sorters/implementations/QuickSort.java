@@ -10,6 +10,7 @@ import java.util.List;
 public class QuickSort implements Sorter {
 
     private static List<Integer[]> sorted;
+
     @Override
     public List<Integer[]> sort(Integer[] numbers, Boolean allSteps) {
         sorted = new ArrayList<>();
