@@ -59,6 +59,12 @@ public class SortController {
         return CompareSorters.compare(ConvertDataToSort.convertToInt(numbersString), sortersList);
     }
 
+    @RequestMapping(value = "/test")
+    public String JustATest() {
+
+        return "I'm working!";
+    }
+
 
 
 }

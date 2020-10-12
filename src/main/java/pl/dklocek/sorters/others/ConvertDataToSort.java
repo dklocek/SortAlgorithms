@@ -23,7 +23,7 @@ public class ConvertDataToSort {
 
       dataToSort.trim();
 
-      return dataToSort.split(",");
+      return dataToSort.trim().split("\\s*,\\s*");
   }
 
 
