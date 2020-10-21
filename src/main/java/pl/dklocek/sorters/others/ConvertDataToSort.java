@@ -21,9 +21,7 @@ public class ConvertDataToSort {
 
   public static String[] convertToString(String dataToSort){
 
-      dataToSort.trim();
-
-      return dataToSort.trim().split("\\s*,\\s*");
+     return dataToSort.trim().split("\\s*,\\s*");
   }
 
 

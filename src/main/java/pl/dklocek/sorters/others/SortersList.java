@@ -10,9 +10,9 @@ import java.util.Map;
 @Component
 public class SortersList {
 
-    private Map<String,Sorter> sorterMap = new HashMap<>();
+    private  Map<String,Sorter> sorterMap = new HashMap<>();
 
-    SortersList(){
+    public SortersList(){
         sorterMap.put("bubble", new BubbleSort());
         sorterMap.put("insertion", new InsertionSort());
         sorterMap.put("quick", new QuickSort());
