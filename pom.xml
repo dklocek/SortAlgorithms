@@ -22,6 +22,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<maven.tomcat.port>8090</maven.tomcat.port>
 	</properties>
 
 	<dependencies>
@@ -73,6 +74,15 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.0</version>
 
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tomcat.maven</groupId>
+			<artifactId>tomcat8-maven-plugin</artifactId>
+			<version>2.2</version>
+			<confirugation>
+				<port>${maven.tomcat.port}</port>
+			</confirugation>
 		</dependency>
 	</dependencies>
 
