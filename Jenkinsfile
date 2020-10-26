@@ -4,10 +4,14 @@ pipeline {
     stages {
         stage('PreWork') {
             steps {
-                catchError {
+                script {
                     echo env.JOB_NAME
-                    sh 'rm * -r '
-                    sh 'pkill -f sorters'
+                    try{
+                        sh 'rm * -r '
+                        sh 'pkill -f sorters'
+                    }catch(Exception e){
+                        echo e.toString()
+                    }
 
                 }
             }
@@ -51,6 +55,7 @@ pipeline {
                             script{
                                 int status = sh(script: "curl -sLI -w '%{http_code}' localhost:50001/test -o /dev/null", returnStdout: true)
                                 if (status != 200 && status != 201) {error("Returned status code = $status when calling $url")}
+                                echo status.toString()
                                 }
                     }
                 }
