@@ -5,6 +5,12 @@
 
 	<groupId>pl.dklocek.sorters</groupId>
 	<artifactId>sorters</artifactId>
+	<exclusions>
+		<exclusion>
+			<groupId>com.vaadin.external.google</groupId>
+			<artifactId>android-json</artifactId>
+		</exclusion>
+	</exclusions>
 	<version>1</version>
 	<packaging>jar</packaging>
 
