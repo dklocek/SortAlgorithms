@@ -27,7 +27,7 @@ pipeline {
         stage('Build'){
             steps {
                  dir("${env.WORKSPACE}/SortAlgorithms"){
-                    sh "mvn package -DskipTests"
+                    sh "mvn package -DskipTests -X"
 
                 }
             }
