@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    parameters {
+            choice(name: 'port', choices: ['50001', '50002', '50003', '50004', '50005', '50006', '50007', '50008', '50009', '50010'], description: 'Port')
+        }
         tools{
             maven 'apache-maven-3.6.3'
         }
@@ -59,7 +62,7 @@ pipeline {
                     withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
                         dir("${env.WORKSPACE}/SortAlgorithms/target"){
 
-                             sh 'echo "java -Dserver.port=50001 -jar sorters.jar --server.port=50010 \\&" | at now + 1 min'
+                             sh 'echo "java -Dserver.port=$params.port -jar sorters.jar --server.port=$params.port \\&" | at now + 1 min'
 
                         }
                     }
@@ -71,7 +74,7 @@ pipeline {
                     steps{
                         sh "sleep 90"
                             script{
-                                int status = sh(script: "curl -sLI -w '%{http_code}' localhost:50010/test -o /dev/null", returnStdout: true)
+                                int status = sh(script: "curl -sLI -w '%{http_code}' localhost:$params.port/test -o /dev/null", returnStdout: true)
                                 if (status != 200 && status != 201) {error("Returned status code = $status when calling $url")}
                                 echo status.toString()
                                 }
