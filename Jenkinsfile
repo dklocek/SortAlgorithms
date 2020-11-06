@@ -1,13 +1,15 @@
 pipeline {
     agent any
-
+        tools{
+            maven 'apache-maven-3.6.3'
+        }
     stages {
         stage('PreWork') {
             steps {
                 script {
                     echo env.JOB_NAME
                     try{
-                        sh 'rm * -r '
+                        sh 'rm -r *'
                         sh 'pkill -f sorters'
                     }catch(Exception e){
                         echo e.toString()
