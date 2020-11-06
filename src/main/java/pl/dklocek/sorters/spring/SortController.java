@@ -25,6 +25,12 @@ public class SortController {
     @Autowired
     ComparatorList comparatorList;
 
+    @RequestMapping(value = "/")
+    public String index() {
+
+        return "Please use /sort or /sortStudent";
+    }
+
     @RequestMapping(value = "/sort")
     public List sorted1(@RequestParam(value = "table") String dataToSort, @RequestParam("method") String method,
                        @RequestParam(value = "allSteps", required = false) boolean steps) {
@@ -37,7 +43,7 @@ public class SortController {
                        @RequestParam(value = "allSteps", required = false) boolean steps,
                        @RequestParam("method") String method) {
 
-        String inputData = ("["+dataToSort.substring(1, dataToSort.length())+"]").replaceAll(";",",");
+        String inputData = ("["+dataToSort.substring(0, dataToSort.length())+"]").replaceAll(";",",");
         Student[] students1={};
         ObjectMapper mapper = new ObjectMapper();
 
