@@ -40,10 +40,13 @@ pipeline {
                 script{
                     withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
                         dir("${env.WORKSPACE}/SortAlgorithms/target"){
-
+                           try{
                              sh "mv *.jar sorters.jar"
                              sh "atd"
                              sh 'echo "java -Dserver.port=50001 -jar sorters.jar --server.port=50010 \\&" | at now + 1 min'
+                             }catch(Exception e){
+                                echo e.toString()
+                             }
 
                         }
                     }
