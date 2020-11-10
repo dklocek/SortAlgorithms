@@ -62,7 +62,7 @@ pipeline {
                     withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
                         dir("${env.WORKSPACE}/SortAlgorithms/target"){
 
-                             sh "echo 'java -Dserver.port=$params.port -jar $JOB_NAME.jar --server.port=$params.port \\&' | at now + 1 min"
+                             sh "echo 'java -Dserver.port=$params.port -jar ${JOB_NAME}.jar --server.port=$params.port \\&' | at now + 1 min"
 
                         }
                     }
