@@ -41,17 +41,15 @@ pipeline {
         stage('Prepare'){
                     steps{
                         script{
-                            withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
-                                dir("${env.WORKSPACE}/SortAlgorithms/target"){
-                                   try{
-                                     sh 'mv *.jar $JOB_NAME.jar'
-                                     sh "atd"
-                                   }catch(Exception e){
-                                        echo e.toString()
+                            dir("${env.WORKSPACE}/SortAlgorithms/target"){
+                                try{
+                                    sh 'mv *.jar $JOB_NAME.jar'
+                                }catch(Exception e){
+                                    echo e.toString()
                                      }
 
-                                }
                             }
+
                         }
                     }
                 }
@@ -62,7 +60,7 @@ pipeline {
                     withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
                         dir("${env.WORKSPACE}/SortAlgorithms/target"){
 
-                             sh "echo 'java -Dserver.port=$params.port -jar ${JOB_NAME}.jar --server.port=$params.port &' | at now + 1 min"
+                             sh 'nohup java -Dserver.port=$port -jar ${JOB_NAME}.jar --server.port=$port &'
 
                         }
                     }
@@ -72,7 +70,7 @@ pipeline {
 
                 stage('Verify'){
                     steps{
-                        sh "sleep 90"
+                        sh "sleep 30"
                             script{
                                 int status = sh(script: "curl -sLI -w '%{http_code}' localhost:$params.port/test -o /dev/null", returnStdout: true)
                                 if (status != 200 && status != 201) {error("Returned status code = $status when calling $url")}
