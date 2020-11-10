@@ -12,7 +12,8 @@ pipeline {
                 script {
                     echo env.JOB_NAME
                     try{
-                        sh 'ps axf | grep $JOB_NAME.jar | grep -v grep | awk "{print "kill -9 " $1}" | sh'
+                        sh 'pkill -f $JOB_NAME.jar'
+                      //  sh 'ps axf | grep $JOB_NAME.jar | grep -v grep | awk "{print "kill -9 " $1}" | sh'
                         sh 'rm -rf *'
                     }catch(Exception e){
                         echo e.toString()
