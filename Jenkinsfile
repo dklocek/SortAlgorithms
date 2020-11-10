@@ -13,12 +13,10 @@ pipeline {
                     echo env.JOB_NAME
                     try{
                         sh 'pkill -f $JOB_NAME.jar'
-                      //  sh 'ps axf | grep $JOB_NAME.jar | grep -v grep | awk "{print "kill -9 " $1}" | sh'
                         sh 'rm -rf *'
                     }catch(Exception e){
                         echo e.toString()
                     }
-
                 }
             }
         }
@@ -26,7 +24,6 @@ pipeline {
             steps {
 
                 sh 'git clone --single-branch --branch dev https://github.com/dklocek/SortAlgorithms.git'
-
             }
         }
 
@@ -48,9 +45,7 @@ pipeline {
                                 }catch(Exception e){
                                     echo e.toString()
                                      }
-
                             }
-
                         }
                     }
                 }
@@ -60,9 +55,7 @@ pipeline {
                 script{
                     withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
                         dir("${env.WORKSPACE}/SortAlgorithms/target"){
-
                              sh 'nohup java -Dserver.port=$port -jar ${JOB_NAME}.jar --server.port=$port &'
-
                         }
                     }
                 }
