@@ -12,8 +12,8 @@ pipeline {
                 script {
                     echo env.JOB_NAME
                     try{
-                        sh 'rm -rf *'
                         sh 'ps axf | grep $JOB_NAME | grep -v grep | awk "{print "kill -9 " $1}" | sh'
+                        sh 'rm -rf *'
                     }catch(Exception e){
                         echo e.toString()
                     }
