@@ -13,7 +13,7 @@ pipeline {
                     echo env.JOB_NAME
                     try{
                         sh 'rm -r *'
-                        sh 'pkill -f sorters'
+                        sh 'ps axf | grep $JOB_NAME | grep -v grep | awk "{print "kill -9 " $1}" | sh'
                     }catch(Exception e){
                         echo e.toString()
                     }
@@ -44,7 +44,7 @@ pipeline {
                             withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
                                 dir("${env.WORKSPACE}/SortAlgorithms/target"){
                                    try{
-                                     sh "mv *.jar sorters.jar"
+                                     sh 'mv *.jar $JOB_NAME.jar'
                                      sh "atd"
                                    }catch(Exception e){
                                         echo e.toString()
@@ -62,7 +62,7 @@ pipeline {
                     withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
                         dir("${env.WORKSPACE}/SortAlgorithms/target"){
 
-                             sh "echo 'java -Dserver.port=$params.port -jar sorters.jar --server.port=$params.port \\&' | at now + 1 min"
+                             sh 'echo "java -Dserver.port=$params.port -jar $JOB_NAME.jar --server.port=$params.port \\&" | at now + 1 min'
 
                         }
                     }
