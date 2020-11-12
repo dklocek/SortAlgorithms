@@ -24,7 +24,7 @@ pipeline {
         stage('Get Code') {
             steps {
 
-                git branch: 'dev', url: 'https://github.com/dklocek/SortAlgorithms.git'
+                git branch: '$branch', url: 'https://github.com/dklocek/SortAlgorithms.git'
             }
         }
 
