@@ -2,6 +2,7 @@ pipeline {
     agent any
     parameters {
             choice(name: 'port', choices: ['50001', '50002', '50003', '50004', '50005', '50006', '50007', '50008', '50009', '50010'], description: 'Port')
+            choice(name: 'branch', choices: ['master', 'dev'])
         }
         tools{
             maven 'apache-maven-3.6.3'
@@ -23,23 +24,20 @@ pipeline {
         stage('Get Code') {
             steps {
 
-                sh 'git clone --single-branch --branch dev https://github.com/dklocek/SortAlgorithms.git'
+                git branch: 'dev', url: 'https://github.com/dklocek/SortAlgorithms.git'
             }
         }
 
         stage('Build'){
             steps {
-                 dir("${env.WORKSPACE}/SortAlgorithms"){
-                    sh "mvn package -DskipTests -X"
-
-                }
-            }
+                  sh "mvn package -DskipTests -X"
+                 }
         }
 
         stage('Prepare'){
                     steps{
                         script{
-                            dir("${env.WORKSPACE}/SortAlgorithms/target"){
+                            dir("${env.WORKSPACE}/target"){
                                 try{
                                     sh 'mv *.jar $JOB_NAME.jar'
                                 }catch(Exception e){
@@ -54,7 +52,7 @@ pipeline {
             steps{
                 script{
                     withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
-                        dir("${env.WORKSPACE}/SortAlgorithms/target"){
+                        dir("${env.WORKSPACE}/target"){
                              sh 'nohup java -Dserver.port=$port -jar ${JOB_NAME}.jar --server.port=$port &'
                         }
                     }
