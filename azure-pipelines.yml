@@ -20,5 +20,5 @@ steps:
 #    publishJUnitResults: true
 #    testResultsFiles: '**/surefire-reports/TEST-*.xml'
 #    goals: 'package'
-- bash: az login
-- bash: webapp create -g MyResourceGroup -p MyPlan -n MyUniqueAppName
+- bash: az login -tenant 20d1dedb-f988-47f9-8611-3f092eb394ad
+- bash: webapp create -g MyNewResourceGroup -n TestWebbAppPipelineAzureDevOps
